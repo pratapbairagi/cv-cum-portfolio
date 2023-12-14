@@ -31,9 +31,15 @@ const [userAuth, setUserAuth] = useState({
   message : ""
 })
 useMemo(()=>{
+  if(popupInfo.show){
+    setPopupInfo({
+      ...popupInfo,
+      show : false
+    })
+  }
   console.log("useMemo run")
 logged();
-},[ userAuth.user, userAuth.auth]);
+},[ userAuth.user, userAuth.auth, popupInfo]);
 
 
 async function logged(){
@@ -74,7 +80,7 @@ async function logged(){
 
         <Routes>
           <Route element={<ProtectedRoute userAuth={userAuth}/>}>
-
+            <Route path='/resume/add/:id' element={<ResumeForm />}/>
             <Route path='/dashboard' element={<Dashboard />}/>
             <Route path='/resume/edit/:id' element={<ResumeForm />}/>
           </Route>
