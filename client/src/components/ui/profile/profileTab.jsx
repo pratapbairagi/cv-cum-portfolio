@@ -3,7 +3,7 @@ import ProfileCard from "./profileCard";
 import { useContext } from "react"
 
 const ProfileTab = () => {
-    const userAuth = useContext(UserContext)
+    const {userAuth} = useContext(UserContext)
 
     return (
         <>'

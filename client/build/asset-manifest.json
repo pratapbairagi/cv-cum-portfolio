@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/static/css/main.6a477c17.css",
-    "main.js": "/static/js/main.2dc3ece8.js",
+    "main.js": "/static/js/main.e7e86543.js",
     "static/js/703.dd222d96.chunk.js": "/static/js/703.dd222d96.chunk.js",
     "static/js/379.ac66ca63.chunk.js": "/static/js/379.ac66ca63.chunk.js",
     "static/js/787.9e9f4ffd.chunk.js": "/static/js/787.9e9f4ffd.chunk.js",
     "static/media/WhatsApp Image 2023-09-26 at 14.14.19.jpg": "/static/media/WhatsApp Image 2023-09-26 at 14.14.19.b09d2bce45753b150cc2.jpg",
     "index.html": "/index.html",
     "main.6a477c17.css.map": "/static/css/main.6a477c17.css.map",
-    "main.2dc3ece8.js.map": "/static/js/main.2dc3ece8.js.map",
+    "main.e7e86543.js.map": "/static/js/main.e7e86543.js.map",
     "703.dd222d96.chunk.js.map": "/static/js/703.dd222d96.chunk.js.map",
     "379.ac66ca63.chunk.js.map": "/static/js/379.ac66ca63.chunk.js.map",
     "787.9e9f4ffd.chunk.js.map": "/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6a477c17.css",
-    "static/js/main.2dc3ece8.js"
+    "static/js/main.e7e86543.js"
   ]
 }
