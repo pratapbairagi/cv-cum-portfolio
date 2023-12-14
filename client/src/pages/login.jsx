@@ -51,11 +51,11 @@ const Login = () => {
                         success: data.success,
                         show: true
                     })
-                    // setUserAuth({
-                    //     user: data.user,
-                    //     auth: data.success,
-                    //     message: data.message
-                    // });
+                    setUserAuth({
+                        user: data.user,
+                        auth: data.success,
+                        message: data.message
+                    });
                     navigate("/dashboard")
                 }
             }
