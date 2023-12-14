@@ -35,6 +35,7 @@ useMemo(()=>{
   try {
     let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
     if(userAuth.user.auth === false){
+      console.Console("user logged in app.jsx=> ")
     let {data} = await axios.get(
       url,
       {
@@ -52,26 +53,26 @@ useMemo(()=>{
     }
     };
 
-    if(popupInfo.show){
-      let {data} = await axios.get(
-        url,
-        {
-          headers : { "Content-Type" : "application/json"},
-          "access-control-allow-origin": `${process.env.REACT_APP_SERVER_URL}`,
-          withCredentials : true
-        }
-      );
+    // if(popupInfo.show){
+    //   let {data} = await axios.get(
+    //     url,
+    //     {
+    //       headers : { "Content-Type" : "application/json"},
+    //       "access-control-allow-origin": `${process.env.REACT_APP_SERVER_URL}`,
+    //       withCredentials : true
+    //     }
+    //   );
 
-    console.log("logged  => ",data)
+    // console.log("logged  => ",data)
 
-      if(data.success){
-        setUserAuth({
-          user : data.user,
-          auth : data.success,
-          message : data.message
-        })
-      }
-    }
+    //   if(data.success){
+    //     setUserAuth({
+    //       user : data.user,
+    //       auth : data.success,
+    //       message : data.message
+    //     })
+    //   }
+    // }
 
   } catch (error) {
     console.log("logged error", error.response)

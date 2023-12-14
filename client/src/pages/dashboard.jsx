@@ -22,7 +22,9 @@ const navigate = useNavigate()
         async function callUser (){
             try {
                 let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
-                if(popupInfo.show === true){
+                // if(popupInfo.show === true){
+      console.Console("user logged in dasboard.jsx=> ")
+
                     let {data} = await axios.get(
                         url,
                         {
@@ -39,7 +41,7 @@ const navigate = useNavigate()
                         });
 
                     }
-                }
+                // }
             } catch (error) {
                 
             }
