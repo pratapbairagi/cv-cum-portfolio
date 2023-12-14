@@ -31,7 +31,12 @@ const [userAuth, setUserAuth] = useState({
   message : ""
 })
 useMemo(()=>{
-  async function logged(){
+  console.log("useMemo run")
+logged();
+},[ userAuth.user, userAuth.auth]);
+
+
+async function logged(){
   try {
     console.log("user logged in app.jsx=> ")
 
@@ -53,35 +58,12 @@ useMemo(()=>{
         message : data.message
       })
     }
-    // };
-
-    // if(popupInfo.show){
-    //   let {data} = await axios.get(
-    //     url,
-    //     {
-    //       headers : { "Content-Type" : "application/json"},
-    //       "access-control-allow-origin": `${process.env.REACT_APP_SERVER_URL}`,
-    //       withCredentials : true
-    //     }
-    //   );
-
-    // console.log("logged  => ",data)
-
-    //   if(data.success){
-    //     setUserAuth({
-    //       user : data.user,
-    //       auth : data.success,
-    //       message : data.message
-    //     })
-    //   }
     }
 
   } catch (error) {
     console.log("logged error", error.response)
   }
 }
-logged();
-},[ userAuth.user])
 
 
   return (
