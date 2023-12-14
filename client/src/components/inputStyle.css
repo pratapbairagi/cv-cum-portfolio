@@ -1,0 +1,37 @@
+.imageUploaderInput_container{
+    width: 100%;
+    height: max-content;
+    border: 1px solid rgb(163, 163, 163);
+    margin: 18px 0;
+    padding: 10px;
+    background-color: white;
+}
+.imageUploaderInput{
+    width:80px;
+    height:80px;
+    display:block;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.imageUploaderInput::before{
+    content: "" !important;
+    width: 80px;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    background: url("https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg");
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: 80px;
+    left: 0;
+}
+
+.inputRanger_container{
+    width: 90%;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+    gap: 0;
+}
