@@ -73,7 +73,6 @@ async function logged(){
 
 
         <Routes>
-          {/* <Route element={<ProtectedRoute auth={{userAuth: userAuth.auth, setUserAuth: setUserAuth}}/>}> */}
           <Route element={<ProtectedRoute userAuth={userAuth}/>}>
 
             <Route path='/dashboard' element={<Dashboard />}/>

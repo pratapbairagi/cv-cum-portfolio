@@ -9,7 +9,6 @@ const Form = ({ css, clss, func, inputChangeHandler, formSubmitBtnName, loginFor
 
     return (
         <div className="container p-0 m-0" style={{ border: "2px solid rgb(13,110,253)", width: "max-content", minWidth: "260px", padding: "0" }}>
-            {/* <div className="form" style={{ display: "flex", flexDirection: "column", width: "max-content", minWidth: "260px", padding: "16px", gap: "10px" }}> */}
             <form onSubmit={func} id="loginform" className="m-0 d-flex flex-column flex-md-row flex-wrap" style={css}>
 
                 {location === "/register" && <>
@@ -37,7 +36,6 @@ const Form = ({ css, clss, func, inputChangeHandler, formSubmitBtnName, loginFor
                 </div>
                 }
 
-                {/* <Button func={func} type="submit" css={{ width: "100%" }} btnName={formSubmitBtnName} /> */}
                 <Input clss="btn btn-primary" type="submit" defaultValue={formSubmitBtnName} css={{ width: "100%" }} btnName={formSubmitBtnName} />
 
             </form>

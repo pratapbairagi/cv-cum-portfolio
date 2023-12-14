@@ -139,10 +139,6 @@ const ResumeForm = () => {
         }, 2000)
     }, [popupInfo])
 
-    // console.log("editcontent => ", contentEdit)
-    // console.log("objectcontent => ",  objectContents)
-    // console.log("state => ",  state)
-    // console.log("objectcontent => ",  Object.keys(objectContents[0]))
     return (
         <>
             <div className="container p-0 d-flex flex-column justify-content-center align-items-center" style={{ width: "100%", height: "max-content", minHeight: "100vh" }}>

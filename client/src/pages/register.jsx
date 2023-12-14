@@ -6,7 +6,7 @@ import axios from "axios";
 import { UserContext } from "../App";
 
 const Register = () => {
-    const { setUserAuth, popupInfo, setPopupInfo} = useContext(UserContext);
+    const { popupInfo, setPopupInfo} = useContext(UserContext);
 
     let navigate = useNavigate()
 

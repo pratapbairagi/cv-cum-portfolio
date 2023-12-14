@@ -70,7 +70,6 @@ const Tabs = () => {
         },
     ]
     return (
-        // <div id="tabs_parent" style={{ height: "70vh", width: "100%" }}>
         <div id="tabs_parent" style={{ height: "70vh", width: "100%" }}>
             <ul className="px-0 pt-4" style={{ width: "100%" }}>
                 {
