@@ -1,13 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
+import { UserContext } from "../App";
 
 
 
-const Tabs = ({userAuth}) => {
+const Tabs = () => {
+    const {userAuth} = useContext(UserContext);
 
     console.log(userAuth)
 
     // tabs functionality
-    useEffect(() => {
+    useMemo(() => {
+        if(userAuth.auth === true){
         let tabs_button = document.querySelectorAll("#tabs_parent ul li")
         tabs_button.forEach((el, ind) => {
             let tabs = document.querySelectorAll("#tabs_container .row");
@@ -31,7 +34,8 @@ const Tabs = ({userAuth}) => {
                 })
             })
         })
-    }, []);
+    }
+    }, [userAuth]);
     
     const tabBtnsData = [
         {

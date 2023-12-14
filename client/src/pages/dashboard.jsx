@@ -4,7 +4,7 @@ import "./dashboard.css";
 import {  CaretDown, CaretRight, Nut } from "react-bootstrap-icons";
 import img from "./images/WhatsApp Image 2023-09-26 at 14.14.19.jpg";
 import Tabs from "../components/tabs";
-import { memo, useContext, useMemo, useRef } from "react"
+import { memo, useContext, useEffect, useMemo, useRef } from "react"
 import { UserContext } from "../App";
 import {useNavigate} from "react-router-dom"
 import ProfileTab from "../components/ui/profile/profileTab";
@@ -18,7 +18,7 @@ const navigate = useNavigate()
     const {userAuth, popupInfo, setPopupInfo, setUserAuth} = useContext(UserContext);
     const pdfRef = useRef();
 
-    useMemo(()=>{
+    useEffect(()=>{
         async function callUser (){
             try {
                 let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
@@ -47,7 +47,7 @@ const navigate = useNavigate()
             }
         }
         callUser();
-    },[popupInfo])
+    },[])
 
     // convert and download pdf
     const getPdfFun = async () => {

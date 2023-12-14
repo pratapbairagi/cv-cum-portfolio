@@ -3,7 +3,7 @@ import Login from './pages/login';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Register from './pages/register';
 import NavBar from './components/navbar';
-import {  useState, createContext, useMemo } from 'react';
+import {  useState, createContext, useMemo, useEffect } from 'react';
 import axios from 'axios';
 import NonProtectedRoute from './protectedNonProtectedRoute/nonProtectedRoute';
 import ProtectedRoute from './protectedNonProtectedRoute/protectedRoute';
@@ -36,7 +36,7 @@ useMemo(()=>{
     console.log("user logged in app.jsx=> ")
 
     let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
-    if(userAuth.user.auth === false){
+    if(userAuth.auth === false){
       console.log("user logged in app.jsx=> ")
     let {data} = await axios.get(
       url,
@@ -53,7 +53,7 @@ useMemo(()=>{
         message : data.message
       })
     }
-    };
+    // };
 
     // if(popupInfo.show){
     //   let {data} = await axios.get(
@@ -74,14 +74,14 @@ useMemo(()=>{
     //       message : data.message
     //     })
     //   }
-    // }
+    }
 
   } catch (error) {
     console.log("logged error", error.response)
   }
 }
 logged();
-},[popupInfo, userAuth])
+},[ userAuth.user])
 
 
   return (
