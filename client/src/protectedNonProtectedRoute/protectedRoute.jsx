@@ -6,9 +6,8 @@ const ProtectedRoute = () => {
     const {userAuth} = useContext(UserContext)
 
    console.log(userAuth)
-   console.log(userAuth.userAuth)
-   console.log(userAuth.auth)
+
     return ( userAuth.auth === true ? <Outlet/> : <Navigate replace to="/login"/>)
 }
 
-export default memo(ProtectedRoute);
+export default ProtectedRoute;

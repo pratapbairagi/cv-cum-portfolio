@@ -36,7 +36,8 @@ const navigate = useNavigate()
                             user: data.user,
                             auth: data.success,
                             message: data.message
-                        })
+                        });
+
                     }
                 }
             } catch (error) {

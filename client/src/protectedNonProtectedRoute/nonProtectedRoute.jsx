@@ -8,4 +8,4 @@ const NonProtectedRoute = () => {
     
     return ( userAuth.auth === false ? <Outlet/> : <Navigate replace to="/dashboard"/> )
 };
-export default memo(NonProtectedRoute);
+export default NonProtectedRoute;
