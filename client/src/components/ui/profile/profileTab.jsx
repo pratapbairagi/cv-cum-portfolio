@@ -26,12 +26,12 @@ const ProfileTab = () => {
                         </div>
 
                         {
-                            userAuth.user.name &&
+                            userAuth.auth === true &&
                             <ProfileCard heading="PERSONAL INFO" userAuth={{ name: userAuth.user.name, number: userAuth.user.number, email: userAuth.user.email, dob: userAuth.user.dob }} />
                         }
 
                         {
-                            userAuth.user.name &&
+                            userAuth.auth === true &&
                             <ProfileCard heading="ADDRESS" userAuth={{ country: userAuth.user.country, state: userAuth.user.state, city: userAuth.user.city, pincode: userAuth.user.pincode }} />
                         }
 
