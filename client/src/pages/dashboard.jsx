@@ -23,7 +23,7 @@ const navigate = useNavigate()
             try {
                 let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
                 // if(popupInfo.show === true){
-      console.Console("user logged in dasboard.jsx=> ")
+      console.log("user logged in dasboard.jsx=> ")
 
                     let {data} = await axios.get(
                         url,

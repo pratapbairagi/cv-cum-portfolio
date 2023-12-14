@@ -33,9 +33,11 @@ const [userAuth, setUserAuth] = useState({
 useMemo(()=>{
   async function logged(){
   try {
+    console.log("user logged in app.jsx=> ")
+
     let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
     if(userAuth.user.auth === false){
-      console.Console("user logged in app.jsx=> ")
+      console.log("user logged in app.jsx=> ")
     let {data} = await axios.get(
       url,
       {
