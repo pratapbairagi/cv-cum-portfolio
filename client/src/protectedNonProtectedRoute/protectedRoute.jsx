@@ -2,8 +2,8 @@ import {Outlet, Navigate} from "react-router-dom";
 import { UserContext } from "../App";
 import { useContext, memo } from "react";
 
-const ProtectedRoute = ({userAuth}) => {
-    // const {userAuth} = useContext(UserContext)
+const ProtectedRoute = () => {
+    const {userAuth} = useContext(UserContext)
 
    console.log(userAuth)
    console.log(userAuth.userAuth)

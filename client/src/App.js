@@ -43,7 +43,7 @@ useMemo(()=>{
         withCredentials : true
       }
     );
-    if(data.success && userAuth.auth === false){
+    if(data.success){
       setUserAuth({
         user : data.user,
         auth : data.success,
@@ -64,7 +64,7 @@ useMemo(()=>{
 
     console.log("logged  => ",data)
 
-      if(data.success && userAuth.auth === false){
+      if(data.success){
         setUserAuth({
           user : data.user,
           auth : data.success,
