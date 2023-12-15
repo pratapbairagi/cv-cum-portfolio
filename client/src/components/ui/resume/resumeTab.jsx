@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom"
 import { useMemo, useState } from "react";
 import ResumeContentCol from "./resumeContentCol";
 import ToggleBtn from "../toggleBtn/toggleBtn";
+import Popup from "../../popup";
 
 
 
 
-const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
+const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }) => {
     let navigate = useNavigate()
 
     // const deleteContentHandler = (e) => {
-    //     console.log("delete =>> ", e)
     // };
 
     const deleteContentHandler = async (e) => {
@@ -27,14 +27,23 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
             if (typeof e.details === "object" && typeof e.details !== "undefined") {
 
                 let { data } = await axios.put(url, { content: e.details, editingContentName: e.content, process: "delete" }, { Headers: { "Content-Type": "application/json" } });
-                console.log("result => ", data)
                 if (data.success) {
+                    console.log("result => ", data.user)
+
                     setPopupInfo({
-                        message: data.message,
+                        message: "data.message",
                         success: true,
                         show: true
                     });
-                    window.location.pathname = "/dashboard"
+
+                    window.location.reload()
+
+                    // setUserAuth({
+                    //     user: data,
+                    //     auth: true,
+                    //     message: ""
+                    // })
+                    navigate("/dashboard")
                 }
             }
 
@@ -46,35 +55,36 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                         success: true,
                         show: true
                     });
-                    window.location.pathname = "/dashboard"
+                    navigate("/dashboard")
 
                 }
 
             }
 
         } catch (error) {
-            // console.log(error.response.data)
             setPopupInfo({
-                message: error.response?.data.error,
-                success: error.response?.data.success,
+                message: error.response.data.error,
+                success: false,
                 show: true
-            })
+            });
+            // navigate("/dashboard")
+
         }
     }
 
-    useMemo(() => {
-        let timeout;
-        timeout = setTimeout(() => {
-            if (popupInfo.show) {
-                setPopupInfo({
-                    ...popupInfo,
-                    message: "",
-                    show: false
-                })
-            }
-            return clearTimeout(timeout)
-        }, 2000)
-    }, [popupInfo]);
+    // useMemo(() => {
+    //     let timeout;
+    //     timeout = setTimeout(() => {
+    //         if (popupInfo.show) {
+    //             setPopupInfo({
+    //                 ...popupInfo,
+    //                 message: "",
+    //                 show: false
+    //             })
+    //         }
+    //         return clearTimeout(timeout)
+    //     }, 2000)
+    // }, [popupInfo]);
 
     // styling for colums
     let [resumeDownloadClass, setResumeDownloadClass] = useState(true)
@@ -83,15 +93,15 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
         return setTimeout(() => {
             // document.getElementById("toggleBtn").style.display = "flex"
             setResumeDownloadClass(true);
-            return window.location.reload()
+            // return window.location.reload()
         }, 5000);
     }
 
 
     return (
         <>
-            <h4 id="resume" style={{ color: "black", fontWeight: "700", marginBottom: "6px", margin:"10px auto" }}>Resume</h4>
-
+            <h4 id="resume" style={{ color: "black", fontWeight: "700", marginBottom: "6px", margin: "10px auto" }}>Resume</h4>
+            <Popup />
             {/* {resumeDownloadClass === true && <div style={{ width: "100%", maxWidth: "100%", overflowX: "auto", height: "max-content", border: "1px solid red", display: "flex", gap: "8px", padding: "8px", margin: "10px auto" }}>
                 <ToggleBtn clss="resume" />
                 <ToggleBtn clss="objective" />
@@ -202,7 +212,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>
 
                 {userAuth.user.experience?.map((v, i) => {
-                    return v.company !== "" && <div className={`col col-12 col-lg-6 p-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
+                    return v.company !== "" && <div key={i} className={`col col-12 col-lg-6 p-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
 
                         <ResumeContentCol colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "rgb(228,226,226)", color: "grey", borderRadius: "10px", fontSize: "8px", height: "20px", lineHeight: "20px" }} children1Value={`${v.company ? v.company : "ex : Facebook"}`} children2Value={`${v.designation ? v.designation : "ex : Customer Care Executive"}`} />
                         <ResumeContentCol colClass="col d-flex mt-1" colStyle={{ columnGap: "20px", borderBottom: "2px solid grey", padding: "3px 4px", alignItems: "center" }} childrenStyle={{ color: "red", fontWeight: "700", fontSize: "10px" }} children1Value={`Start : ${v.start ? v.start : "ex : 2016"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
@@ -270,7 +280,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                     </h6>
                 </div>
                 {userAuth.user.skill?.map((v, i) => {
-                    return v.skill !== "" && <div className="col col-12 d-flex flex-wrap p-0">
+                    return v.skill !== "" && <div key={i} className="col col-12 d-flex flex-wrap p-0">
                         <div className="col col-8 px-4 m-0 py-2" style={{ height: "50px", display: "flex", alignItems: "center" }}>
                             <div style={{ height: "22px", width: "90%", background: `linear-gradient(to right, green ${v.skill && v.level + "%"}, white 0)`, color: "black", fontWeight: "700", lineHeight: "22px", textAlign: "left", padding: "0 20px", fontSize: "10px", borderRadius: "20px", boxShadow: "0 0 2px grey" }}>{v.skill ? v.skill : "HTML"}</div>
                         </div>
@@ -298,7 +308,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>
                 <div className="py-2" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {userAuth.user.language?.map((v, i) => {
-                        return v.language !== "" && <div className="col col-12 col-md-6 col-lg-4 col-xl-3 d-flex flex-wrap gap-0 mt-1">
+                        return v.language !== "" && <div key={i} className="col col-12 col-md-6 col-lg-4 col-xl-3 d-flex flex-wrap gap-0 mt-1">
                             <div className="col col-7  px-4 py-2 m-0" style={{ height: `${resumeDownloadClass === true ? "120px" : "30px"}`, display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center" }}>
                                 {resumeDownloadClass === true && <div style={{ height: "70px", width: "70px", borderRadius: "50%", background: `conic-gradient(green  ${v.language ? (v.level / 100) * 360 : 280}deg, transparent 0)`, color: "black", fontWeight: "700", lineHeight: "80px", textAlign: "left", padding: "0", fontSize: "14px", border: "2px solid white", boxShadow: "0 0 0 2px grey", display: "grid", placeItems: "center", margin: "0 auto" }}>
                                     <span style={{ width: "40px", height: "40px", borderRadius: "50%", background: "white", display: "block", textAlign: "center", lineHeight: "40px" }}>{v.language ? v.level : "80%"}</span>

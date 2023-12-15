@@ -62,8 +62,6 @@ exports.userLogin = async (req, res, next) => {
         }
         let isUserExist = await User.findOne({ email });
 
-    console.log("wrong ==> ", isUserExist)
-
         if (!isUserExist || isUserExist === null) {
             return next(new ErrorHandler(`Login credential does not match!`, 403))
         };
@@ -183,7 +181,7 @@ exports.editUser = async (req, res, next) => {
             }
             else {
                 
-                if(typeof user[req.body.editingContentName]){
+                if(typeof user[req.body.editingContentName] === "string"){
                      editingContent = req.body.content
                 }
                 else{
@@ -205,16 +203,23 @@ exports.editUser = async (req, res, next) => {
                     return next(new ErrorHandler("content not found !", 404))
                 }
 
+                if(user[req.body.editingContentName].length === 1){
+                    return next( new ErrorHandler("Can not delete last content, edit allowed !", 403))
+                }
+
                 await cloudinary.uploader.destroy(editingContent.public_id);
                 user[req.body.editingContentName] = user[req.body.editingContentName].filter(v => v.id !== editingContent.id)
             }
             else {
+
+
+                if(user[req.body.editingContentName].length === 1){
+                    return next( new ErrorHandler("Can not delete last content, edit allowed !", 403))
+                }
                 let editingContent = user[req.body.editingContentName].filter((v, i) => v.id !== req.body.content.id)
                 user[req.body.editingContentName] = editingContent;
             }
         }
-
-        // console.log("user", user)
 
          user = await user.save();
 
