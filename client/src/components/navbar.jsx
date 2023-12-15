@@ -7,7 +7,8 @@ const NavBar = () => {
   const [location, setLocation] = useState(window.location.pathname)
   useEffect(()=>{
     setLocation(window.location.pathname)
-  },[])
+  },[]);
+
 
     return (<>
         { location !== "/dashboard" && <div className="navbar_container container m-0 p-0">

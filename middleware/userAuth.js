@@ -4,7 +4,6 @@ const User = require("../models/user");
 
 const userAuth = async (req, res, next) => {
     try {
-        console.log("jwt ==> ", req)
 
         let {jwt} = req.cookies;
         if(jwt == null || jwt == undefined){

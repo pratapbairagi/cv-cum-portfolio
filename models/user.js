@@ -46,7 +46,16 @@ const userSchema = new mongoose.Schema({
         }
     },
     dob: {
-        type: Number
+        type: String,
+        default : "18th, May, 1994"
+    },
+    profession : {
+        type : String,
+        default : "Front End Developer"
+    },
+    status : {
+        type : String,
+        default : "Unmarried"
     },
     number: {
         type: Number,
@@ -113,19 +122,24 @@ const userSchema = new mongoose.Schema({
 
     },
     address: {
-        type: String
+        type: String,
+        default : "RZ-26/14, Tughlakabad"
     },
     country: {
-        type: String
+        type: String,
+        default : "India"
     },
     state: {
-        type: String
+        type: String,
+        default : "Delhi"
     },
     city: {
-        type: String
+        type: String,
+        default : "New Delhi"
     },
     pincode: {
-        type: String
+        type: Number,
+        default : 110019
     },
     role: {
         type: String,

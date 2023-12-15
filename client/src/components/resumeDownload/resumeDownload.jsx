@@ -21,7 +21,6 @@ const ResumeDownload = () => {
     let pdfRef = useRef()
     const { userAuth, popupInfo, setPopupInfo } = useContext(UserContext);
 
-    console.log(userAuth)
     useMemo(() => {
         let timeout;
         timeout = setTimeout(() => {
@@ -71,7 +70,7 @@ const ResumeDownload = () => {
 
     return (
         <div className="container">
-             {resumeDownloadClass === true && <div style={{ width: "100%", maxWidth: "595px", overflowX: "auto", height: "max-content", border: "1px solid red", display: "flex", gap: "8px", padding: "8px", margin: "10px auto" }}>
+             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex", justifyContent:"center", gap: "8px", padding: "8px", margin: "10px auto" }}>
                 <ToggleBtn clss="top_details" />
                 <ToggleBtn clss="objective" />
                 <ToggleBtn clss="experience" />
@@ -88,11 +87,11 @@ const ResumeDownload = () => {
                 <div className="col col-12 p-0 d-flex flex-wrap">
                     
                     <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-6" style={{ fontSize: "62%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name ? userAuth.user.name :"Pratap Bairagi"}</span>
+                        <span className="col col-6" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name ? userAuth.user.name :"Pratap Bairagi"}</span>
                         <span className="col col-6" style={{ fontSize: "52%", fontWeight: "600", color: "blue", textAlign: "right", textDecoration: "underline" }}>{userAuth.user.email ? userAuth.user.email : "pratapbairagi@gmail.com"}</span>
                     </div>
                     <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>Jr. Civil Engineer & Architecture Consultant</span>
+                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
                         <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "black", textAlign: "right" }}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-5 -5 34 34" strokeWidth={1.5} stroke="currentColor" style={{ width: "8%", boxShadow: "0 0 2px grey", borderRadius: "50%", marginRight: "4px", padding: "1px" }}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -110,7 +109,7 @@ const ResumeDownload = () => {
                             </svg>
 
                             :
-                            RZ-26/14, Tughlakabad, South Delhi.
+                             {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state}
                         </span>
                     </div>
 
@@ -118,7 +117,6 @@ const ResumeDownload = () => {
                 </div>
                 <div id="objective" className="col col-10" style={{ textAlign: "left", padding: "8px", background: "transparent", color: "rgb(34, 31, 31)", display: "flex", flexDirection: "row", flexWrap: "wrap", borderTop: "1px solid grey", borderBottom: "1px solid grey", margin: "15px auto" }}>
 
-                    {/* <span style={{ width: "calc( 100% )", display: "block", fontSize: "9px" }}>{userAuth.user.objective}</span> */}
                     <span style={{ width: "calc( 100% )", display: "block", fontSize: "55%", fontWeight: "400" }}>{userAuth.user.objective}</span>
                 </div>
             </div>
@@ -278,7 +276,7 @@ const ResumeDownload = () => {
        <button onClick={async () => {
                 await activeResumeDownloadfClass_fun();
                 return await getPdfFun()
-            }} className="btn btn-primary mb-5" style={{position:"fixed", bottom:"0", left:"50%"}}>GET PDF</button>
+            }} className="btn btn-primary" style={{position:"fixed", bottom:"14vh", left:"50%"}}>GET PDF</button>
         </div>
     )
 };

@@ -38,18 +38,14 @@ useMemo(()=>{
       show : false
     })
   }
-  console.log("useMemo run")
 logged();
 },[ userAuth.user, userAuth.auth, popupInfo]);
 
 
 async function logged(){
   try {
-    console.log("user logged in app.jsx=> ")
-
     let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/loggedme`
     if(userAuth.auth === false){
-      console.log("user logged in app.jsx=> ")
     let {data} = await axios.get(
       url,
       {
@@ -72,9 +68,11 @@ async function logged(){
   }
 }
 
+const [location, setLocation] = useState(window.location.pathname)
+
 
   return (
-    <div className="App">
+    <div className="App"  style={{minWidth:`${location === "/" ? "542px" : "100%"}`}}>
       <UserContext.Provider value={{userAuth:userAuth, setUserAuth: setUserAuth, popupInfo, setPopupInfo}}>
       <BrowserRouter>
 
@@ -84,6 +82,7 @@ async function logged(){
             <Route path='/resume/add/:id' element={<ResumeForm />}/>
             <Route path='/dashboard' element={<Dashboard />}/>
             <Route path='/resume/edit/:id' element={<ResumeForm />}/>
+            <Route path='/profile/edit/:id' element={<ResumeForm />}/>
             <Route path='/' element={<ResumeDownload />}/>
 
           </Route>

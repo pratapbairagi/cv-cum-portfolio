@@ -6,8 +6,6 @@ import { UserContext } from "../App";
 const Tabs = () => {
     const {userAuth} = useContext(UserContext);
 
-    console.log(userAuth)
-
     // tabs functionality
     useMemo(() => {
         if(userAuth.auth === true){

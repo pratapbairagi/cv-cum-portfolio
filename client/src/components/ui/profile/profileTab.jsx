@@ -1,4 +1,5 @@
 import { UserContext } from "../../../App";
+import EditBtnLogo from "../../../assets/editBtnLogo";
 import ProfileCard from "./profileCard";
 import { useContext } from "react"
 
@@ -20,19 +21,17 @@ const ProfileTab = () => {
 
                     <div className="row p-0 m-0 d-flex" style={{ width: "100%", height: "max-content", minHeight: "50vh", justifyContent: "space-around", position: "relative" }}>
                         <div className="col col-12 w-100 px-2 m-0 my-2" style={{ height: "20px", textAlign: "right" }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#5A5AB7" style={{ width: "20px", margin: "0" }}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                            </svg>
+                        <EditBtnLogo style={{ width: "20px", stroke: "red", cursor: "pointer", marginLeft: "auto" }} to={`/profile/edit/${userAuth.user._id}`} heading="objective" />
                         </div>
 
                         {
                             userAuth.auth === true &&
-                            <ProfileCard heading="PERSONAL INFO" userAuth={{ name: userAuth.user.name, number: userAuth.user.number, email: userAuth.user.email, dob: userAuth.user.dob }} />
+                            <ProfileCard _id={userAuth.user._id} heading="PERSONAL INFO" userAuth={{ name: userAuth.user.name, number: userAuth.user.number, email: userAuth.user.email, dob: userAuth.user.dob, status : userAuth.user.status}} />
                         }
 
                         {
                             userAuth.auth === true &&
-                            <ProfileCard heading="ADDRESS" userAuth={{ country: userAuth.user.country, state: userAuth.user.state, city: userAuth.user.city, pincode: userAuth.user.pincode }} />
+                            <ProfileCard _id={userAuth.user._id} heading="ADDRESS" userAuth={{ country: userAuth.user.country, state: userAuth.user.state, city: userAuth.user.city, pincode: userAuth.user.pincode, profession : userAuth. user.profession}} />
                         }
 
                     </div>

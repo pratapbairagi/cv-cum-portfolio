@@ -179,8 +179,16 @@ exports.editUser = async (req, res, next) => {
 
             }
             else {
-                let editingContent = user[req.body.editingContentName].filter((v, i) => v.id !== req.body.content.id)
-                editingContent = [...editingContent, req.body.content]
+                
+                if(typeof user[req.body.editingContentName]){
+                     editingContent = req.body.content
+                }
+                else{
+                     editingContent = user[req.body.editingContentName].filter((v, i) => v.id !== req.body.content.id)
+                    editingContent = [...editingContent, req.body.content]
+
+                }
+               
                 user[req.body.editingContentName] = editingContent;
             }
         };
