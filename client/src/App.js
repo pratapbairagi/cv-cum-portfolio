@@ -32,14 +32,20 @@ const [userAuth, setUserAuth] = useState({
   message : ""
 })
 useMemo(()=>{
-  if(popupInfo.show){
-    setPopupInfo({
-      ...popupInfo,
-      show : false
-    })
-  }
+  
 logged();
-},[ userAuth.user, userAuth.auth, popupInfo]);
+},[ userAuth.user, userAuth.auth]);
+
+useMemo(()=>{
+  if(popupInfo.show){
+    setTimeout(()=>{
+      setPopupInfo({
+        ...popupInfo,
+        show : false
+      })
+    },2000)
+  }
+},[popupInfo])
 
 
 async function logged(){

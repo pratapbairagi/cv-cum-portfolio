@@ -54,6 +54,7 @@ exports.userRegister = async (req, res, next) => {
 };
 
 exports.userLogin = async (req, res, next) => {
+    console.log("login", req.body.email)
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -61,7 +62,9 @@ exports.userLogin = async (req, res, next) => {
         }
         let isUserExist = await User.findOne({ email });
 
-        if (!isUserExist) {
+    console.log("wrong ==> ", isUserExist)
+
+        if (!isUserExist || isUserExist === null) {
             return next(new ErrorHandler(`Login credential does not match!`, 403))
         };
 
@@ -228,8 +231,28 @@ exports.editUser = async (req, res, next) => {
 
 exports.getUsers = async () => {
     try {
-
     } catch (error) {
 
+    }
+};
+
+exports.logoutme = async (req, res, next) => {
+    try {
+        
+        let cookieOptions = {
+            httpOnly : true,
+            expires : new Date(Date.now())
+        };
+
+
+        res.status(200).cookie("jwt", null, cookieOptions).json({
+            success : true,
+            message : "logout !",
+            user : {}
+        })
+
+        
+    } catch (error) {
+        
     }
 }

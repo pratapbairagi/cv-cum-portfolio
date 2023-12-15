@@ -65,7 +65,6 @@ const Login = () => {
                 success: error.response.data.success,
                 show: true
             })
-            console.log("error ===> ", error.response.data.error)
         }
 
     }

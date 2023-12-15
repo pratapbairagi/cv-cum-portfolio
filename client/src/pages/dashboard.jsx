@@ -80,7 +80,7 @@ const navigate = useNavigate()
                     <div className="dashboardLogo_andname_container">
                         <Nut onClick={()=>{ 
                              navigate("/") 
-                             window.location.reload()}} className="dashboardLogo"  color="whitesmoke" size="24px" />
+                             }} className="dashboardLogo"  color="whitesmoke" size="24px" />
                         <h6 className="p-0 m-0 d-none d-md-block " style={{ height: "100%", fontWeight: "600", color: "whitesmoke", lineHeight: "130%" }}>DASHBOARD</h6>
                     </div>
 
