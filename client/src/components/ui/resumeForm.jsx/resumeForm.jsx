@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useCallback, useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom"
 import Input from "../../input";
 import Button from "../../button";
 import Popup from "../../popup";
-import { Shop } from "react-bootstrap-icons";
 import { UserContext } from "../../../App";
 
 const ResumeForm = () => {
     const { id } = useParams()
     const { state } = useLocation()
     const location = useNavigate();
-    const {userAuth, setUserAuth, popupInfo, setPopupInfo} = useContext(UserContext);
+    const { popupInfo, setPopupInfo} = useContext(UserContext);
 
 
     
@@ -83,7 +82,7 @@ const ResumeForm = () => {
     const submitEditContentForm = async () => {
         try {
 
-            let url = `https://resume-cum-portfolio.vercel.app/portfolio/resume/edit/${id}`
+            let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/resume/edit/${id}`
 
             if (typeof contentEdit === "object" && typeof contentEdit !== "undefined") {
 

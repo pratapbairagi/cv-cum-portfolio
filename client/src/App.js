@@ -9,6 +9,7 @@ import NonProtectedRoute from './protectedNonProtectedRoute/nonProtectedRoute';
 import ProtectedRoute from './protectedNonProtectedRoute/protectedRoute';
 import Dashboard from './pages/dashboard';
 import ResumeForm from './components/ui/resumeForm.jsx/resumeForm';
+import ResumeDownload from './components/resumeDownload/resumeDownload';
 // bacnic IT company
 // delhi nirman vihar
 // pi, hr
@@ -83,6 +84,8 @@ async function logged(){
             <Route path='/resume/add/:id' element={<ResumeForm />}/>
             <Route path='/dashboard' element={<Dashboard />}/>
             <Route path='/resume/edit/:id' element={<ResumeForm />}/>
+            <Route path='/' element={<ResumeDownload />}/>
+
           </Route>
 
           

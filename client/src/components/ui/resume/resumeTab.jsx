@@ -92,7 +92,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
         <>
             <h4 id="resume" style={{ color: "black", fontWeight: "700", marginBottom: "6px", margin:"10px auto" }}>Resume</h4>
 
-            {resumeDownloadClass === true && <div style={{ width: "100%", maxWidth: "100%", overflowX: "auto", height: "max-content", border: "1px solid red", display: "flex", gap: "8px", padding: "8px", margin: "10px auto" }}>
+            {/* {resumeDownloadClass === true && <div style={{ width: "100%", maxWidth: "100%", overflowX: "auto", height: "max-content", border: "1px solid red", display: "flex", gap: "8px", padding: "8px", margin: "10px auto" }}>
                 <ToggleBtn clss="resume" />
                 <ToggleBtn clss="objective" />
                 <ToggleBtn clss="qualification" />
@@ -101,9 +101,9 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 <ToggleBtn clss="project" />
                 <ToggleBtn clss="skill" />
                 <ToggleBtn clss="language" />
-            </div>}
+            </div>} */}
 
-            <div id="objective" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Objective
@@ -119,7 +119,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
             </div>
 
 
-            <div id="qualification" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Qualification
@@ -160,7 +160,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
             </div>
 
 
-            <div id="course" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Course
@@ -194,7 +194,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>}
             </div>
 
-            <div id="experience" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Experience
@@ -224,7 +224,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>}
             </div>
 
-            <div id="project" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Project
@@ -263,7 +263,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>}
             </div>
 
-            <div id="skill" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mb-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Skill
@@ -290,7 +290,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun }) => {
                 </div>}
             </div>
 
-            <div id="language" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Language
