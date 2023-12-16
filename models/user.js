@@ -20,6 +20,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         default : "Write something about you."
     },
+    social:{
+        type : [Object],
+        default : [
+            {
+                social : "",
+                link : "",
+                id : 0
+            }
+        ]
+    },
     objective: {
         type: String,
         default : "write anything about you career and job career."
