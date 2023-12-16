@@ -10,6 +10,7 @@ import ProtectedRoute from './protectedNonProtectedRoute/protectedRoute';
 import Dashboard from './pages/dashboard';
 import ResumeForm from './components/ui/resumeForm.jsx/resumeForm';
 import ResumeDownload from './components/resumeDownload/resumeDownload';
+import Portfolio from './pages/portfolio';
 // bacnic IT company
 // delhi nirman vihar
 // pi, hr
@@ -86,13 +87,13 @@ function App() {
 
 
           <Routes>
+            <Route path='/about' element={<Portfolio/>}/>
             <Route element={<ProtectedRoute userAuth={userAuth} />}>
               <Route path='/resume/add/:id' element={<ResumeForm />} />
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/resume/edit/:id' element={<ResumeForm />} />
               <Route path='/profile/edit/:id' element={<ResumeForm />} />
               <Route path='/' element={<ResumeDownload />} />
-
             </Route>
 
 

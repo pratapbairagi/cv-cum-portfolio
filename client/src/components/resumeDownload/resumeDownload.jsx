@@ -69,8 +69,9 @@ const ResumeDownload = () => {
 
 
     return (
-        <div className="container">
-             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex", justifyContent:"center", gap: "8px", padding: "8px", margin: "10px auto" }}>
+        <div className="container p-0" style={{ width:"max-content", position:"relative", margin:"0 auto"}}>
+             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex", flexWrap:"wrap", justifyContent:"center", gap: "10px", padding: "8px 0", margin: "10px auto", marginTop:"0", width:"595px", background:"rgb(32, 30, 30)" }}>
+               <h6 style={{width:"100%", color:"whitesmoke"}}>HIDE SECTION IN RESUME PDF</h6>
                 <ToggleBtn clss="top_details" />
                 <ToggleBtn clss="objective" />
                 <ToggleBtn clss="experience" />
@@ -87,8 +88,8 @@ const ResumeDownload = () => {
                 <div className="col col-12 p-0 d-flex flex-wrap">
                     
                     <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-6" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name ? userAuth.user.name :"Pratap Bairagi"}</span>
-                        <span className="col col-6" style={{ fontSize: "52%", fontWeight: "600", color: "blue", textAlign: "right", textDecoration: "underline" }}>{userAuth.user.email ? userAuth.user.email : "pratapbairagi@gmail.com"}</span>
+                        <span className="col col-6" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name }</span>
+                        <span className="col col-6" style={{ fontSize: "52%", fontWeight: "600", color: "blue", textAlign: "right", textDecoration: "underline" }}>{userAuth.user.email }</span>
                     </div>
                     <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
                         <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
@@ -276,7 +277,7 @@ const ResumeDownload = () => {
        <button onClick={async () => {
                 await activeResumeDownloadfClass_fun();
                 return await getPdfFun()
-            }} className="btn btn-primary" style={{position:"fixed", bottom:"14vh", left:"50%"}}>GET PDF</button>
+            }} className="btn btn-primary btn-sm px-3" style={{position:"fixed", bottom:"14vh", marginLeft:"-5%"}}>GET PDF</button>
         </div>
     )
 };

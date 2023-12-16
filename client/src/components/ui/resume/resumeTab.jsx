@@ -332,10 +332,10 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                 </div>}
             </div>
 
-            ${resumeDownloadClass === true && <button onClick={async () => {
+            {/* {resumeDownloadClass === true && <button onClick={async () => {
                 await activeResumeDownloadfClass_fun();
                 return await getPdfFun()
-            }} className="btn btn-primary mb-5">GET PDF</button>}
+            }} className="btn btn-primary mb-5">GET PDF</button>} */}
 
         </>
     )
