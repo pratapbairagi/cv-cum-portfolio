@@ -18,21 +18,21 @@ const userSchema = new mongoose.Schema({
     },
     about: {
         type: String,
-        default : "Write something about you."
+        default: "Write something about you."
     },
-    social:{
-        type : [Object],
-        default : [
+    social: {
+        type: [Object],
+        default: [
             {
-                social : "",
-                link : "",
-                id : 0
+                social: "",
+                link: "",
+                id: 0
             }
         ]
     },
     objective: {
         type: String,
-        default : "write anything about you career and job career."
+        default: "write anything about you career and job career."
     },
     qualification: {
         type: [Object],
@@ -44,28 +44,31 @@ const userSchema = new mongoose.Schema({
                 end: "",
                 result: "",
                 description: "",
-                id : 0
+                id: 0
             }
         ]
     },
     image: {
-        public_id: {
-            type: String
-        }, url: {
-            type: String
-        }
+        type: [Object],
+        default: [
+            {
+                public_id: "",
+                url: "", 
+                id : 0
+            }
+        ]
     },
     dob: {
         type: String,
-        default : "18th, May, 1994"
+        default: "18th, May, 1994"
     },
-    profession : {
-        type : String,
-        default : "Front End Developer"
+    profession: {
+        type: String,
+        default: "Front End Developer"
     },
-    status : {
-        type : String,
-        default : "Unmarried"
+    status: {
+        type: String,
+        default: "Unmarried"
     },
     number: {
         type: Number,
@@ -82,7 +85,7 @@ const userSchema = new mongoose.Schema({
             organization: "",
             result: "",
             description: "",
-            id : 0
+            id: 0
         }
     },
     experience: {
@@ -95,61 +98,61 @@ const userSchema = new mongoose.Schema({
                 designation: "",
                 salary: "",
                 description: "",
-                id : 0
+                id: 0
             }
         ]
     },
     skill: {
         type: [Object],
-        default:[
+        default: [
             {
-            skill: "",
-            level: 0,
-                id : 0
-        }
-    ]
+                skill: "",
+                level: 0,
+                id: 0
+            }
+        ]
     },
-    language : {
-        type : [Object],
-        default : [
+    language: {
+        type: [Object],
+        default: [
             {
-                language : "",
-                level : 0,
-                id : 0
+                language: "",
+                level: 0,
+                id: 0
             }
         ]
     },
     project: {
-        type : [Object],
-        default : {
+        type: [Object],
+        default: {
             project_name: "",
             project_url: "",
             project_description: "",
             url: "",
-            public_id : "",
-            id : 0
+            public_id: "",
+            id: 0
         }
 
     },
     address: {
         type: String,
-        default : "RZ-26/14, Tughlakabad"
+        default: "RZ-26/14, Tughlakabad"
     },
     country: {
         type: String,
-        default : "India"
+        default: "India"
     },
     state: {
         type: String,
-        default : "Delhi"
+        default: "Delhi"
     },
     city: {
         type: String,
-        default : "New Delhi"
+        default: "New Delhi"
     },
     pincode: {
         type: Number,
-        default : 110019
+        default: 110019
     },
     role: {
         type: String,

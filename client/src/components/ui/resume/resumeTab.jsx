@@ -14,9 +14,6 @@ import Popup from "../../popup";
 const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }) => {
     let navigate = useNavigate()
 
-    // const deleteContentHandler = (e) => {
-    // };
-
     const deleteContentHandler = async (e) => {
 
         try {
@@ -28,8 +25,6 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
 
                 let { data } = await axios.put(url, { content: e.details, editingContentName: e.content, process: "delete" }, { Headers: { "Content-Type": "application/json" } });
                 if (data.success) {
-                    console.log("result => ", data.user)
-
                     setPopupInfo({
                         message: "data.message",
                         success: true,
@@ -38,11 +33,6 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
 
                     window.location.reload()
 
-                    // setUserAuth({
-                    //     user: data,
-                    //     auth: true,
-                    //     message: ""
-                    // })
                     navigate("/dashboard")
                 }
             }
@@ -67,7 +57,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                 success: false,
                 show: true
             });
-            // navigate("/dashboard")
+            navigate("/dashboard")
 
         }
     }

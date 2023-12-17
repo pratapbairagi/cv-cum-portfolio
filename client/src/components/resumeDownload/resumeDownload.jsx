@@ -131,7 +131,7 @@ const ResumeDownload = () => {
                 </div>
 
                 {userAuth.user.experience?.map((v, i) => {
-                    return v.company !== "" && <div className={`col col-12 col-lg-6 p-0 px-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
+                    return v.company !== "" && <div key={i} className={`col col-12 col-lg-6 p-0 px-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
 
                         <ResumeContentCol colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.company ? v.company : "ex : Facebook"}`} children2Value={`${v.designation ? v.designation : "ex : Customer Care Executive"}`} />
 

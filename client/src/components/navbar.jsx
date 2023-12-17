@@ -35,7 +35,7 @@ try {
   console.log()
 
   return (<>
-    {location !== "/dashboard" && <div className="navbar_container container m-0 p-0" >
+     <div className="navbar_container container m-0 p-0" >
       <ul className="p-0 m-0">
         <NavLink to="/" className="navlink"  >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -66,7 +66,7 @@ try {
 
         </div>
       </ul>
-    </div>}
+    </div>
   </>
   )
 };

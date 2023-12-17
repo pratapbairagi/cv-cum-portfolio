@@ -12,6 +12,8 @@ const ResumeForm = () => {
     const location = useNavigate();
     const { popupInfo, setPopupInfo} = useContext(UserContext);
 
+    console.log("state => ", state)
+
     const [contentEdit, setContentEdit] = useState(undefined)
     let [objectContents, setObjectContents] = useState([])
     useMemo(() => {
@@ -26,6 +28,7 @@ const ResumeForm = () => {
                         setContentEdit(!data.user[state.heading] ? "Any" : data.user[state.heading]);
 
                     }else{
+                        console.log("image add => ", data.user[state.heading])
                         setContentEdit(data.user[state.heading]);
                     }
 
