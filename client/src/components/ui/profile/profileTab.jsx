@@ -14,13 +14,13 @@ const ProfileTab = () => {
     const location = useNavigate();
 
     let social_app_style = {
-        width: "50px", 
-        height: "50px", 
+        width: "80%", 
+        height: "80%", 
         borderRadius: "50%", 
         position:"absolute", 
         top:"5px", 
         left:"5px",
-        boxShadow:"0 0 0 3px white "
+        boxShadow:"0 0 0 4px white "
     }
 
     return (
@@ -32,7 +32,7 @@ const ProfileTab = () => {
                     <img style={{ width: "99px", height: "99px", borderRadius: "50%" }} src={userAuth.user.image.length > 1 ? userAuth.user.image[1].url : ""} alt="" />
 
                     <div onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "image", defaultData: userAuth.user.image.length > 1 ? userAuth.user.image[1] : userAuth.user.image, process: `${userAuth.user.image.length > 1 ? "edit" : "add"}` } })} style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", top: "-24px", right: "-72px", background: "white" }}>
-                        <Upload style={{ width: "16px", height: "16px", transform: "translateY(-4px)", color: "5A5AB7" }} />
+                        <Upload style={{ width: "16px", height: "16px", transform: "translateY(-4px)", color: "#5A5AB7" }} />
                     </div>
 
                 </div>
@@ -67,16 +67,14 @@ const ProfileTab = () => {
                     }
 
                     <div className="py-2 col col-12 mt-4 mb-5" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start", position:"relative", columnGap:"40px", width:"92%" }}>
-                       <h6 style={{width:"100%", color:"#5A5AB7", fontWeight:"700"}}>CONTACTS</h6>
+                       <h6 className="mb-4" style={{width:"100%", color:"#5A5AB7", fontWeight:"700"}}>CONTACTS</h6>
                         {userAuth.user.social?.map((v, i) => {
-                            return v.id !== 0 &&  <div key={i} style={{ width: "60px", height: "60px", borderRadius: "50%", boxShadow: "1px 1px 4px grey", background: "#5A5AB7", position:"relative"}}>
-                            <Social_app _key={i} parentStyle={{ width: "60px", height: "60px", borderRadius: "50%", border:"1px solid green", display:"grid", placeItems:"center" }} social_app_style={social_app_style} v={v}/>
-                                <Upload onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "social", defaultData: v, process: `edit` } })} style={{ position: "absolute", width: "24px", height: "24px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", bottom: "-3px", right: "-3px", background: "white" }} />
+                            return v.id !== 0 &&  <div key={i} style={{ width: "45px", height: "45px", borderRadius: "50%", background: "#5A5AB7", position:"relative"}}>
+                            <Social_app _key={i} parentStyle={{ width: "100%", height: "100%", borderRadius: "50%", display:"grid", placeItems:"center" }} social_app_style={social_app_style} v={v}/>
+                                <Upload onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "social", defaultData: v, process: `edit` } })} style={{ position: "absolute", width: "20px", padding:"3px", stroke:"grey", height: "20px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", bottom: "-3px", right: "-3px", background: "white" }} />
                         </div>
                         })}
                     <AddBtnLogo clss="addBtnLogo" to={`/resume/add/${userAuth.user._id}`} heading="social" />
-                    {/* <DeleteBtnLogo deleteContentHandler={() => deleteContentHandler({ details: v, content: "experience" })} style={{ width: "20px", stroke: "red", cursor: "pointer", marginLeft: "auto" }} /> */}
-                        
 
                     </div>
 

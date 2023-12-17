@@ -1,8 +1,8 @@
-import { Facebook, Linkedin, Whatsapp, Instagram, Twitter, Snapchat, Telegram, ImageFill, Upload, Github, Discord, Wechat, Skype, Line, QuestionCircleFill } from "react-bootstrap-icons";
+import { Facebook, Linkedin, Whatsapp, Instagram, Twitter, Snapchat, Telegram, Github, Discord, Wechat, Skype, Line, QuestionCircleFill } from "react-bootstrap-icons";
 
 const Social_app = ({v, social_app_style, _key, parentStyle}) => {
     return (
-        <a key={_key} style={parentStyle} href={v.link}>
+        <a key={_key} style={parentStyle} href={v.social.includes("whatsapp") ? `https://wa.me/${v?.link}?text=Hello` : v?.link}>
                             {
                             v.social.includes("whatsapp") ?
                             <Whatsapp fill="white" style={social_app_style} />

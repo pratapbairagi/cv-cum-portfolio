@@ -54,7 +54,6 @@ exports.userRegister = async (req, res, next) => {
 };
 
 exports.userLogin = async (req, res, next) => {
-    console.log("login", req.body.email)
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -76,7 +75,6 @@ exports.userLogin = async (req, res, next) => {
 
         let token = await isUserExist.generateWebToken();
 
-        console.log("token => ", token)
 
         let cookieOptions = {
             httpOnly: true,

@@ -4,8 +4,6 @@ const User = require("../models/user");
 
 const userAuth = async (req, res, next) => {
     try {
-
-
         let {jwt} = req.cookies;
         if(jwt == null || jwt == undefined){
             return next( new ErrorHandler("Session expired !"))

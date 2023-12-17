@@ -46,7 +46,7 @@ const navigate = useNavigate()
             }
         }
         callUser();
-    },[])
+    },[userAuth.auth])
 
     // convert and download pdf
     const getPdfFun = async () => {
