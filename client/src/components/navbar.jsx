@@ -24,6 +24,7 @@ try {
 
   if(data.success){
     navigate("/login")
+    window.location.reload()
   }
 
 } catch (error) {
@@ -31,8 +32,6 @@ try {
 }
 
   }
-
-  console.log()
 
   return (<>
      <div className="navbar_container container m-0 p-0" >

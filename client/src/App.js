@@ -3,7 +3,7 @@ import Login from './pages/login';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Register from './pages/register';
 import NavBar from './components/navbar';
-import { useState, createContext, useMemo, useEffect } from 'react';
+import { useState, createContext, useMemo, useEffect, useRef } from 'react';
 import axios from 'axios';
 import NonProtectedRoute from './protectedNonProtectedRoute/nonProtectedRoute';
 import ProtectedRoute from './protectedNonProtectedRoute/protectedRoute';
@@ -11,6 +11,7 @@ import Dashboard from './pages/dashboard';
 import ResumeForm from './components/ui/resumeForm.jsx/resumeForm';
 import ResumeDownload from './components/resumeDownload/resumeDownload';
 import Portfolio from './pages/portfolio';
+import Search_portfolio from './pages/search_portfolio/searchPortfolio';
 // bacnic IT company
 // delhi nirman vihar
 // pi, hr
@@ -77,17 +78,17 @@ function App() {
     }
   }
 
-  const [location, setLocation] = useState(window.location.pathname)
-
-
   return (
-    <div className="App" style={{ minWidth: `${location === "/" ? "542px" : "100%"}` }}>
+    <div className="App" style={{ minWidth: `100%` }}>
+    {/* <div className="App"> */}
       <UserContext.Provider value={{ userAuth: userAuth, setUserAuth: setUserAuth, popupInfo, setPopupInfo }}>
         <BrowserRouter>
 
 
           <Routes>
+          <Route path='/portfolio/:id' element={<Portfolio/>}/>
             <Route path='/about' element={<Portfolio/>}/>
+            <Route path='/search' element={<Search_portfolio/>}/>
             <Route element={<ProtectedRoute userAuth={userAuth} />}>
               <Route path='/resume/add/:id' element={<ResumeForm />} />
               <Route path='/dashboard' element={<Dashboard />} />

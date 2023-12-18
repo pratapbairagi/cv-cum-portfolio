@@ -1,13 +1,49 @@
 import img from "./images/undraw_portfolio_feedback_6r17.svg"
 import me from "./images/WhatsApp Image 2023-09-26 at 14.14.19.jpg"
 import background from "./images/background_.jpg"
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo } from "react";
 import { UserContext } from "../App";
 import Social_app from "../components/social_app/socialApp";
+import axios from "axios";
 
 const Portfolio = () => {
-    const { userAuth, popupInfo, setPopupInfo } = useContext(UserContext);
+    let {id} = useParams();
+
+    
+    console.log(id)
+    let { userAuth, popupInfo, setPopupInfo, setUserAuth } = useContext(UserContext);
+
+    
+
+    const getSearchedPortfolioFun = async () => {
+        try {
+            let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/user/${id}`
+            let {data} = await axios.get(
+                url,
+          {
+            headers: { "Content-Type": "application/json" },
+            "access-control-allow-origin": `${process.env.REACT_APP_SERVER_URL}`,
+            withCredentials: true
+          }
+            );
+             if(data.success){
+                setUserAuth({
+                    user: data.user,
+                    auth: true,
+                    message: ""
+                  })
+             }
+        } catch (error) {
+            
+        }
+    };
+
+    useMemo(()=>{
+        if(id){
+            getSearchedPortfolioFun()
+        }
+    },[id]);
 
     let navigate = useNavigate()
     return (
@@ -42,7 +78,7 @@ const Portfolio = () => {
                     {
                     userAuth.user.image?.length > 1 ? <img className="" src={userAuth.user.image[1].url} style={{ width: "40%", minWidth: "220px" }} alt="" /> 
                         :
-                        <img className="" src={me} style={{ width: "40%", minWidth: "220px" }} alt="" />
+                        <div style={{ width: "40%", minWidth: "220px", aspectRatio:"1/1", lineHeight:"220px"}}>NO IMAGE</div>
                 }   
                 </div>
 
@@ -80,14 +116,14 @@ const Portfolio = () => {
                 })}
             </div>
 
-            <div className="row mb-5" style={{background:"whitesmoke"}}>
+            <div className="row mb-5 m-0" style={{background:"whitesmoke"}}>
             <h5 className="mt-3 col col-12 mb-3" style={{ fontWeight: "700", color: "rgb(13, 110, 253)" }}>SKILLS</h5>
             
                 <div className="py-2" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {userAuth.user.skill?.map((v, i) => {
                         return v.skill !== "" && <div key={i} className="col col-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-wrap gap-0 mt-1">
-                            <div className="col col-12  px-4 py-2 m-0" style={{ height: `120px`, display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center" }}>
-                                <div style={{ height: "80px", width: "76px", borderRadius: "50%", background: `conic-gradient(rgb(13, 110, 253)  ${v.skill ? (v.level / 100) * 360 : 280}deg, transparent 0)`, color: "black", fontWeight: "700", lineHeight: "80px", textAlign: "left", padding: "0", fontSize: "14px", border: "2px solid white", boxShadow: "0 0 0 2px grey", display: "grid", placeItems: "center", margin: "0 auto" }}>
+                            <div className="col col-12  p-0 m-0" style={{ height: `120px`, display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center" }}>
+                                <div style={{ height: "80px", width: "80px", borderRadius: "50%", background: `conic-gradient(rgb(13, 110, 253)  ${v.skill ? (v.level / 100) * 360 : 280}deg, transparent 0)`, color: "black", fontWeight: "700", lineHeight: "80px", textAlign: "left", padding: "0", fontSize: "14px", border: "2px solid white", boxShadow: "0 0 0 2px grey", display: "grid", placeItems: "center", margin: "0 auto" }}>
                                     <span style={{ width: "40px", height: "40px", borderRadius: "50%", background: "white", display: "block", textAlign: "center", lineHeight: "40px" }}>{v.level+"%"}</span>
                                 </div>
                                 <span style={{ display: "block", color: 'rgb(13, 110, 253)', fontSize: "14px", fontWeight: "700", padding: "2px 6px", marginTop: "4px" }}>{v.skill}</span>

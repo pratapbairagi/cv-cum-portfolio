@@ -4,10 +4,12 @@ const ErrorHandler = require("../utils/errorHandler");
 
 
 exports.userRegister = async (req, res, next) => {
-    const { name, email, password, number } = req.body;
+    let { name, email, password, number } = req.body;
 
-    console.log("reg", req.body)
     try {
+        email = email.toLowerCase();
+        name = name.toLowerCase();
+
         if (!name || !email || !password || !number) {
             return next(new ErrorHandler("All fields are required !", 403))
         }
@@ -55,7 +57,10 @@ exports.userRegister = async (req, res, next) => {
 
 exports.userLogin = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        let { email, password } = req.body;
+         
+        email = email.toLowerCase();
+
         if (!email || !password) {
             return next(new ErrorHandler("both fields are required !", 402))
         }
@@ -134,8 +139,6 @@ exports.getUser = async (req, res, next) => {
 
 exports.editUser = async (req, res, next) => {
     try {
-        // console.log(req.body);
-
 
         let user = await User.findOne({ _id: req.params.id });
 
@@ -217,7 +220,10 @@ exports.editUser = async (req, res, next) => {
                 let editingContent = user[req.body.editingContentName].filter((v, i) => v.id !== req.body.content.id)
                 user[req.body.editingContentName] = editingContent;
             }
-        }
+        };
+
+        user.email = user.email.toLowerCase();
+        user.name = user.name.toLowerCase();
 
          user = await user.save();
 
@@ -254,6 +260,54 @@ exports.logoutme = async (req, res, next) => {
             user : {}
         })
 
+        
+    } catch (error) {
+        
+    }
+};
+
+exports.searchPortfolio = async (req, res, next) => {
+    try {
+        let users;
+        if(req.body.value.includes("@")){
+
+            users = await User.find({email : req.body.value.toLowerCase()});
+
+            if(!users){
+                return next( new ErrorHandler("email does not exist !", 404))
+            };
+        }
+
+        if(isNaN(Number(req.body.value)) === false && req.body.value.length === 10){
+            users = await User.find({number : req.body.value});
+
+        if(!users){
+            return next( new ErrorHandler("mobile number does not exist !", 404))
+        };
+        };
+
+        if(isNaN(Number(req.body.value))=== true && !req.body.value.includes("@") ){
+
+            users = await User.find({name : req.body.value.toLowerCase()});
+
+        if(!users){
+            return next( new ErrorHandler("name number does not exist or search with full name !", 404))
+        };
+        };
+
+        users = users.map((v=>{
+            return {
+                id : v._id,
+                name : v.name,
+                image : v.image
+            }
+        }))
+
+        res.status(200).json({
+            success : true,
+            message : "Portfolio Found !",
+            users
+        })
         
     } catch (error) {
         

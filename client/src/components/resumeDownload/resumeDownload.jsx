@@ -12,6 +12,7 @@ import { UserContext } from "../../App";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { CheckCircleFill } from "react-bootstrap-icons";
 
 
 
@@ -49,6 +50,9 @@ const ResumeDownload = () => {
     // convert and download pdf
     const getPdfFun = async () => {
         let refElem = pdfRef.current;
+        refElem.style.width = "595px"
+        refElem.style.height = "842px"
+
         html2canvas(refElem).then((canvas) => {
             let imgData = canvas.toDataURL("image/png");
             let pdf = new jsPDF("p", "px", "a4", true);
@@ -63,15 +67,19 @@ const ResumeDownload = () => {
 
             pdf.addImage(imgData, "PNG", imgX, 0, imgWidth * ratio, imgHeight * ratio);
             pdf.save("resume.pdf")
-        })
+        });
 
-    }
+        
+
+    };
+
+    
 
 
     return (
-        <div className="container p-0" style={{ width:"max-content", position:"relative", margin:"0 auto"}}>
-             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex", flexWrap:"wrap", justifyContent:"center", gap: "10px", padding: "8px 0", margin: "10px auto", marginTop:"0", width:"595px", background:"rgb(32, 30, 30)" }}>
-               <h6 style={{width:"100%", color:"whitesmoke"}}>HIDE SECTION IN RESUME PDF</h6>
+        <div className="container" style={{ width: `100%`, position:"relative", margin:"0 auto", padding:"0"}}>
+             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex",  justifyContent:"center", flexWrap:"wrap", gap: "10px", padding: "8px 0", margin: "10px auto", marginTop:"0", background:"rgb(32, 30, 30)" }}>
+               <h6 style={{width:"100%", fontSize:"12px",color:"whitesmoke"}}>HIDE SECTION IN RESUME PDF</h6>
                 <ToggleBtn clss="top_details" />
                 <ToggleBtn clss="objective" />
                 <ToggleBtn clss="experience" />
@@ -81,7 +89,10 @@ const ResumeDownload = () => {
                 <ToggleBtn clss="course" />
                 <ToggleBtn clss="personal" />
             </div>}
-        <div ref={pdfRef} style={{ width: "595px", height: "842px", padding:"24px 10px 14px 10px", margin:"auto" }}>
+
+
+        <div ref={pdfRef} style={{ width: `100%`, border:"1px solid red", height:"842px", overflow:"visible", padding:"54px 14px 14px 10px", margin:"auto" }}>
+        {/* <div ref={pdfRef} style={{ width: "100%", border:"1px solid red", overflow:"hidden", padding:"24px 10px 14px 10px", margin:"auto" }}> */}
 
 
             <div id="top_details" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
@@ -125,7 +136,8 @@ const ResumeDownload = () => {
 
             <div id="experience" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-1">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <CheckCircleFill style={{marginRight:"10px"}}/>
                         Experience
                     </h6>
                 </div>
@@ -133,12 +145,12 @@ const ResumeDownload = () => {
                 {userAuth.user.experience?.map((v, i) => {
                     return v.company !== "" && <div key={i} className={`col col-12 col-lg-6 p-0 px-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
 
-                        <ResumeContentCol colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.company ? v.company : "ex : Facebook"}`} children2Value={`${v.designation ? v.designation : "ex : Customer Care Executive"}`} />
+                        <ResumeContentCol index={i} colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.company ? v.company : "ex : Facebook"}`} children2Value={`${v.designation ? v.designation : "ex : Customer Care Executive"}`} />
 
                         <div className="col col-12 mt-1 px-3" style={{ textAlign: "left", background: "transparent", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
                             {v.description ? v.description : "Anything about your past job or it's experience."}
                         </div>
-                            <ResumeContentCol colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2016"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
+                            <ResumeContentCol index={""} colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2016"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
                     </div>
                 })}
 
@@ -147,18 +159,19 @@ const ResumeDownload = () => {
 
             <div id="qualification" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <CheckCircleFill style={{marginRight:"10px"}}/>
                         Qualification
                     </h6>
                 </div>
                 {userAuth.user.qualification?.map((v, i) => {
                     return v.education !== "" && v.organization !== "" && <div key={i} className={`col col-12 col-lg-6 p-0 px-2 mt-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
-                        <ResumeContentCol colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "110%", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.education ? v.education : "Ex : Schooling"}`} children2Value={`${v.organization ? v.organization : "Ex : Shyama Prasad Mukherji (CBSE)"}`} />
+                        <ResumeContentCol index={i} colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "110%", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.education ? v.education : "Ex : Schooling"}`} children2Value={`${v.organization ? v.organization : "Ex : Shyama Prasad Mukherji (CBSE)"}`} />
                         <div className="col col-12 mt-1 px-3" style={{ textAlign: "left", background: "transparent", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
                             {v.description ? v.description : "ex : Anything about your education related organization!"}
 
                         </div>
-                            <ResumeContentCol colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2005"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
+                            <ResumeContentCol  index={""} colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2005"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
 
                     </div>
                 })
@@ -169,19 +182,21 @@ const ResumeDownload = () => {
 
             <div id="project" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <CheckCircleFill style={{marginRight:"10px"}}/>
                         Project
                     </h6>
                 </div>
                 {userAuth.user.project?.map((v, i) => {
                     return v.project_name !== "" && <div key={i} className="col col-12 d-flex flex-column-reverse flex-lg-row mt-2 flex-wrap px-2" style={{ alignItems: "center" }}>
                         <div className={`col col-12 col-lg-12 p-2 py-1 m-0 d-flex flex-column ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content", minHeight: "max-content", maxHeight: "220px", justifyContent: "flex-start" }}>
-                            <div className="col col-12" style={{ textAlign: "left", padding: "4px", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
-                                {v.project_description ? v.project_description : "Anything about your project details, what technologies you have used, how long it took etc."}
-                            </div>
                             <div className="col col-12 d-flex flex-wrap justify-content-start align-items-center" style={{ fontSize: "60%", fontWeight: "600", columnGap: "10%" }}>
+                            <span style={{fontWeight:"600", fontSize:"10px", position:"absolute", color:"black", marginLeft:"-7px"}}>{i} . </span>
                                 <span style={{ padding: "3px 10px", borderBottom: "1px solid grey", color: "rgb(34, 31, 31)", whiteSpace: "nowrap" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</span>
                                 <span style={{ padding: "3px 10px", borderBottom: "1px solid grey", color: "rgb(34, 31, 31)", textAlign: "left", whiteSpace: "nowrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
+                            </div>
+                            <div className="col col-12" style={{ textAlign: "left", padding: "4px", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
+                               {v.project_description ? v.project_description : "Anything about your project details, what technologies you have used, how long it took etc."}
                             </div>
                         </div>
 
@@ -194,14 +209,15 @@ const ResumeDownload = () => {
             
             <div id="skill" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <CheckCircleFill style={{marginRight:"10px"}}/>
                         skill
                     </h6>
                 </div>
                 {userAuth.user.skill?.map((v, i) => {
                     return v.skill !== "" && <div className="col col-12 d-flex flex-wrap p-0 gap-0 g-0" style={{gap:"0"}}>
                         <div className="col col-9 px-4 m-0 py-0 m-0" style={{ height: "16px", display: "flex", alignItems: "center" }}>
-                            <div style={{ height: "16px", width: "90%", color: "rgb(34, 31, 31)", fontWeight: "400", lineHeight: "16px", textAlign: "left", padding: "0 20px", fontSize: "50%"}}>{v.skill ? v.skill : "HTML"}</div>
+                            <div style={{ height: "16px", width: "90%", color: "rgb(34, 31, 31)", fontWeight: "400", lineHeight: "16px", textAlign: "left", padding: "0 20px", fontSize: "50%"}}> {i+" ."} {v.skill ? v.skill : "HTML"}</div>
                         </div>
                         <div className="col col-3 py-0 m-0" style={{ color: "grey", fontSize: "55%", fontWeight: "600", justifyContent: "center", height: "16px", display: "flex", alignItems: "center" }}>
                             {v.skill ? v.level <= 33 ? "Beginner" : v.level >= 66 ? "Expert" : "Intermediate" : "Intermediate"}
@@ -214,7 +230,8 @@ const ResumeDownload = () => {
 
             <div id="course" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                        <CheckCircleFill style={{marginRight:"10px"}}/>
                         Course
                     </h6>
                 </div>
@@ -222,13 +239,13 @@ const ResumeDownload = () => {
                     userAuth.user.course?.map((v, i) => {
                         return v.course !== "" && <div key={i} className={`col col-12 col-lg-6 p-0 px-2 ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content" }}>
 
-                            <ResumeContentCol colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "110%", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.course ? v.course : "ex : Telly ERP"}`} children2Value={`${v.organization ? v.organization : "ex : ABC Institute"}`} />
+                            <ResumeContentCol index={i} colClass="col col-12 d-flex p-0" colStyle={{ fontSize: "110%", fontWeight: "600", justifyContent: "space-between", gap: "10px" }} childrenStyle={{ textAlign: "left", padding: "0 15px", background: "transparent", color: "black", borderRadius: "10px", fontSize: "50%", height: "20px", lineHeight: "20px" }} children1Value={`${v.course ? v.course : "ex : Telly ERP"}`} children2Value={`${v.organization ? v.organization : "ex : ABC Institute"}`} />
 
                             <div className="col col-12 mt-2 px-3" style={{ textAlign: "left", background: "transparent", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
                                 {v.description ? v.description : "ex : Anything about your course!"}
 
                             </div>
-                                <ResumeContentCol colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2016"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
+                                <ResumeContentCol index={""} colClass="col d-flex px-3 mt-2" colStyle={{ columnGap: "20px", padding: "0 4px", alignItems: "center" }} childrenStyle={{ color: "grey", fontWeight: "500", fontSize: "55%", borderBottom:"1px solid grey" }} children1Value={`Start : ${v.start ? v.start : "ex : 2016"}`} children2Value={`End : ${v.end ? v.end : "ex : 2016"}`} />
                         </div>
                     })
                 }
@@ -241,7 +258,8 @@ const ResumeDownload = () => {
 
             <div id="personal" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 30px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <CheckCircleFill style={{marginRight:"10px"}}/>
                         Personal details
                     </h6>
                 </div>
@@ -277,7 +295,7 @@ const ResumeDownload = () => {
        <button onClick={async () => {
                 await activeResumeDownloadfClass_fun();
                 return await getPdfFun()
-            }} className="btn btn-primary btn-sm px-3" style={{position:"fixed", bottom:"14vh", marginLeft:"-5%"}}>GET PDF</button>
+            }} className="btn btn-primary btn-sm px-3" style={{position:"fixed", bottom:"14vh", marginLeft:"-50px"}}>GET PDF</button>
         </div>
     )
 };

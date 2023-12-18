@@ -28,8 +28,8 @@ const ProfileTab = () => {
 
 
             <div className="col col-12 p-1" style={{ height: "200px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "rgb(228, 226, 226)", position: "relative" }}>
-                <div style={{ height: "50%", top: "10%", borderRadius: "50%", aspectRatio: "1/1", boxShadow: "1px 1px 4px grey", background: "#5A5AB7", position: "absolute" }}>
-                    <img style={{ width: "99px", height: "99px", borderRadius: "50%" }} src={userAuth.user.image.length > 1 ? userAuth.user.image[1].url : ""} alt="" />
+                <div style={{ height: "50%", top: "10%", borderRadius: "50%", aspectRatio: "1/1", boxShadow: "1px 1px 4px grey", background: "transparent", position: "absolute" }}>
+                    <img style={{ width: "102px", height: "97px", marginTop:"2px", borderRadius: "50%" }} src={userAuth.user.image.length > 1 ? userAuth.user.image[1].url : ""} alt="" />
 
                     <div onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "image", defaultData: userAuth.user.image.length > 1 ? userAuth.user.image[1] : userAuth.user.image, process: `${userAuth.user.image.length > 1 ? "edit" : "add"}` } })} style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", top: "-24px", right: "-72px", background: "white" }}>
                         <Upload style={{ width: "16px", height: "16px", transform: "translateY(-4px)", color: "#5A5AB7" }} />
