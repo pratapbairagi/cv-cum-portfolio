@@ -12,6 +12,7 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  position: relative;
   color: rgba(0, 128, 128, 0.363) ;
 }
 
@@ -29,7 +30,10 @@
   z-index: 10;
   /* border: 2px solid red; */
   bottom: 0;
-  background-color: rgb(13, 110, 253);
+  /* background-color: rgb(13, 110, 253); */
+  background-color: whitesmoke;
+  box-shadow: 0 0 2px grey;
+
 }
 
 .navbar_container ul {
@@ -49,22 +53,26 @@
   height: 52px;
   padding: 0;
 }
+.navlink svg {
+  height: 80%;
+  /* padding: 4px; */
+  margin-top: 4px;
+  border-radius: 50%;
+  /* border: 2px solid white; */
+  /* stroke: white; */
+  stroke: rgb(13, 110, 253);
+}
 .navlink:hover{
-  background-color: white;
+  /* background-color: white; */
+  background-color: rgb(13, 110, 253);
   /* color: rgb(32, 30, 30); */
 }
 .navlink svg:hover{
-  stroke: rgb(13, 110, 253);
-}
-
-
-.navlink svg {
-  height: 90%;
-  padding: 8px;
-  border-radius: 50%;
-  /* border: 2px solid white; */
+  /* stroke: rgb(13, 110, 253); */
   stroke: white;
 }
+
+
 .portfolio_row_1{
   height: 60vh;
 }
@@ -100,7 +108,9 @@
 
   .navlink {
     padding: 10px;
-    border: 1px solid rgb(13, 110, 253);
+    /* border: 1px solid rgb(13, 110, 253); */
+
+    background: rgba(13, 109, 253, 0.621);
     padding: 2px;
     width: 36px !important;
     height: 36px;
@@ -108,11 +118,30 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
+    cursor: pointer;
+    transition: .2s ease;
   }
 
   .navlink svg {
-    border: 1px solid rgb(13, 110, 253);
-    padding: 5px;
+    /* border: 1px solid rgb(13, 110, 253); */
+    /* border: 1px solid white; */
+    stroke: white;
+    padding: 1px;
+    margin: 0;
+    transition: .1s ease;
     /* transform: rotateZ(-90deg); */
+  }
+  .navlink:hover {
+    border: 1px solid rgb(13, 110, 253);
+    background: white;
+    stroke: rgb(13, 110, 253);
+  }
+  .navlink:hover svg{
+    background: white;
+    stroke: rgb(13, 110, 253);
+  }
+  .navlink svg:hover {
+    stroke: rgb(13, 110, 253);
+
   }
 }

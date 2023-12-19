@@ -40,13 +40,13 @@ const Search_portfolio = () => {
 
     let navigate = useNavigate()
     return (
-        <div className="container p-0 m-0 pb-5">
+        <div className="container p-0 m-0" style={{maxWidth:"100%", minHeight:"100vh"}}>
 
-            <div className="row">
-                <div className="col col-12">
+            <div className="row p-0 m-0">
+                <div className="col col-12 p-0 m-0">
                     <h6 style={{ fontSize: "16px", color: "grey", fontWeight: "700", marginTop: "30px", marginBottom: "20px" }}>SEARCH PORTFOLIO</h6>
                 </div>
-                <div className="col col-12" style={{ display: 'flex', justifyContent: "center" }}>
+                <div className="col col-12 p-0 m-0" style={{ display: 'flex', justifyContent: "center" }}>
                     <input ref={searchVal} placeholder="search for portfolio..." style={{ height: "30px", outline: "none", border:"1px solid grey", borderRight:"none", padding: "6px 10px", width: "220px", fontSize: "12px", color: "grey", fontWeight: "400" }} type="search" name="" id="" />
                     <button onClick={() => searchPortfolioFun()} className="btn btn-primary btn-sm p-0 rounded-left-0 rounded-0" style={{ width: "30px", height: "30px", display: "grid", placeItems: "center" }}>
                         <Search />
@@ -54,7 +54,7 @@ const Search_portfolio = () => {
                 </div>
             </div>
 
-            <div className="row mt-3 mb-5" style={{display:"flex", justifyContent:"center", flexWrap:"wrap", gap:"10px"}}>
+            <div className="row m-0" style={{display:"flex", padding:"0 0 80px 0", justifyContent:"center", flexWrap:"wrap", gap:"10px"}}>
             { searchPortfolio.found_portfolio ?
                searchPortfolio.users.map((v,i)=>{ 
                return <div key={i} className="col col-12 col-md-4 col-lg-3 col-xl-2 mt-3 p-2" style={{  display:"flex", flexDirection:"column", justifyContent:"flex-end", minHeight:"240px"}}>

@@ -6,11 +6,7 @@ import axios from "axios";
 const NavBar = () => {
   let userAuth = useContext(UserContext);
   let navigate = useNavigate()
-  let {pathname} = useLocation()
-  const [location, setLocation] = useState(pathname)
-  useEffect(() => {
-    setLocation(pathname)
-  }, []);
+  
 
   // logout fun
   const logout = async () => {
@@ -33,7 +29,7 @@ try {
 
   }
 
-  return (<>
+  return (
      <div className="navbar_container container m-0 p-0" >
       <ul className="p-0 m-0">
         <NavLink to="/" className="navlink"  >
@@ -66,7 +62,6 @@ try {
         </div>
       </ul>
     </div>
-  </>
   )
 };
 export default memo(NavBar);

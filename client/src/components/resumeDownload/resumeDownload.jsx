@@ -12,7 +12,7 @@ import { UserContext } from "../../App";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { CheckCircleFill } from "react-bootstrap-icons";
+import { CheckCircleFill, EnvelopeAtFill, House, TelephoneFill, Whatsapp } from "react-bootstrap-icons";
 
 
 
@@ -91,37 +91,34 @@ const ResumeDownload = () => {
             </div>}
 
 
-        <div ref={pdfRef} style={{ width: `100%`, border:"1px solid red", height:"842px", overflow:"visible", padding:"54px 14px 14px 10px", margin:"auto" }}>
+        <div ref={pdfRef} style={{ width: `100%`, boxShadow:"0 1px 5px red", height:"842px", overflow:"visible", padding:"54px 20px 14px 16px", margin:"auto" }}>
         {/* <div ref={pdfRef} style={{ width: "100%", border:"1px solid red", overflow:"hidden", padding:"24px 10px 14px 10px", margin:"auto" }}> */}
 
 
             <div id="top_details" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex flex-wrap">
                     
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-6" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name }</span>
-                        <span className="col col-6" style={{ fontSize: "52%", fontWeight: "600", color: "blue", textAlign: "right", textDecoration: "underline" }}>{userAuth.user.email }</span>
+                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                        <span className="col col-5" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name }</span>
+                        <span className="col col-7" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
+                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}>{userAuth.user.email }</span>
+                            <EnvelopeAtFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
+                            </span>
                     </div>
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
-                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "black", textAlign: "right" }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-5 -5 34 34" strokeWidth={1.5} stroke="currentColor" style={{ width: "8%", boxShadow: "0 0 2px grey", borderRadius: "50%", marginRight: "4px", padding: "1px" }}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                            </svg>
-                            :
-                            +91 {userAuth.user.number ? userAuth.user.number : "8287889123"}
+                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                        <span className="col col-7" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
+                        <span className="col col-5" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
+                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}> +91 {userAuth.user.number ? userAuth.user.number : "Phone Number"} </span>
+                            <TelephoneFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
+                            
                         </span>
                     </div>
 
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "space-between" }}  >
-                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}></span>
-                        <span className="col col-5" style={{ fontSize: "58%", fontWeight: "500", color: "black", textAlign: "right" }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{ width: "8%", boxShadow: "0 0 2px grey", borderRadius: "50%", marginRight: "4px", padding: "2px" }}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                            </svg>
-
-                            :
-                             {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state}
+                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                        <span className="col col-4" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}></span>
+                        <span className="col col-8 p-0" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
+                           <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}>  {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state} </span>
+                            <House viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
                         </span>
                     </div>
 
@@ -136,7 +133,7 @@ const ResumeDownload = () => {
 
             <div id="experience" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-1">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                     <CheckCircleFill style={{marginRight:"10px"}}/>
                         Experience
                     </h6>
@@ -159,7 +156,7 @@ const ResumeDownload = () => {
 
             <div id="qualification" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                     <CheckCircleFill style={{marginRight:"10px"}}/>
                         Qualification
                     </h6>
@@ -182,7 +179,7 @@ const ResumeDownload = () => {
 
             <div id="project" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                     <CheckCircleFill style={{marginRight:"10px"}}/>
                         Project
                     </h6>
@@ -190,8 +187,8 @@ const ResumeDownload = () => {
                 {userAuth.user.project?.map((v, i) => {
                     return v.project_name !== "" && <div key={i} className="col col-12 d-flex flex-column-reverse flex-lg-row mt-2 flex-wrap px-2" style={{ alignItems: "center" }}>
                         <div className={`col col-12 col-lg-12 p-2 py-1 m-0 d-flex flex-column ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content", minHeight: "max-content", maxHeight: "220px", justifyContent: "flex-start" }}>
-                            <div className="col col-12 d-flex flex-wrap justify-content-start align-items-center" style={{ fontSize: "60%", fontWeight: "600", columnGap: "10%" }}>
-                            <span style={{fontWeight:"600", fontSize:"10px", position:"absolute", color:"black", marginLeft:"-7px"}}>{i} . </span>
+                            <div className="col col-12 d-flex flex-wrap justify-content-start align-items-center" style={{ fontSize: "60%", fontWeight: "600", columnGap: "10%", position:"relative" }}>
+                            <span className="p-0" style={{ width:"6px", height:"6px", position:"absolute", color:"black", marginLeft:"-2px", top:"9px", background:"grey"}}> </span>
                                 <span style={{ padding: "3px 10px", borderBottom: "1px solid grey", color: "rgb(34, 31, 31)", whiteSpace: "nowrap" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</span>
                                 <span style={{ padding: "3px 10px", borderBottom: "1px solid grey", color: "rgb(34, 31, 31)", textAlign: "left", whiteSpace: "nowrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
                             </div>
@@ -209,14 +206,14 @@ const ResumeDownload = () => {
             
             <div id="skill" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                     <CheckCircleFill style={{marginRight:"10px"}}/>
                         skill
                     </h6>
                 </div>
                 {userAuth.user.skill?.map((v, i) => {
                     return v.skill !== "" && <div className="col col-12 d-flex flex-wrap p-0 gap-0 g-0" style={{gap:"0"}}>
-                        <div className="col col-9 px-4 m-0 py-0 m-0" style={{ height: "16px", display: "flex", alignItems: "center" }}>
+                        <div className="col col-9 px-1 m-0 py-0 m-0" style={{ height: "16px", display: "flex", alignItems: "center" }}>
                             <div style={{ height: "16px", width: "90%", color: "rgb(34, 31, 31)", fontWeight: "400", lineHeight: "16px", textAlign: "left", padding: "0 20px", fontSize: "50%"}}> {i+" ."} {v.skill ? v.skill : "HTML"}</div>
                         </div>
                         <div className="col col-3 py-0 m-0" style={{ color: "grey", fontSize: "55%", fontWeight: "600", justifyContent: "center", height: "16px", display: "flex", alignItems: "center" }}>
@@ -230,7 +227,7 @@ const ResumeDownload = () => {
 
             <div id="course" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                         <CheckCircleFill style={{marginRight:"10px"}}/>
                         Course
                     </h6>
@@ -258,7 +255,7 @@ const ResumeDownload = () => {
 
             <div id="personal" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
             <div className="col col-12 p-0 d-flex mt-2">
-                    <h6 style={{ width: "92%", padding: "4px 30px 6px 15px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
+                    <h6 style={{ width: "100%", padding: "4px 15px 6px 8px", borderBottom:"1px solid grey", color: "orange", margin: "4px auto", textAlign:"left", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "70%", fontFamily:"cursive" }}>
                     <CheckCircleFill style={{marginRight:"10px"}}/>
                         Personal details
                     </h6>
@@ -295,7 +292,7 @@ const ResumeDownload = () => {
        <button onClick={async () => {
                 await activeResumeDownloadfClass_fun();
                 return await getPdfFun()
-            }} className="btn btn-primary btn-sm px-3" style={{position:"fixed", bottom:"14vh", marginLeft:"-50px"}}>GET PDF</button>
+            }} className="btn btn-primary btn-sm px-3" style={{position:"fixed", bottom:"12vh", transform:"translate(-50%, -50%)"}}>GET PDF</button>
         </div>
     )
 };
