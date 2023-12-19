@@ -98,27 +98,27 @@ const ResumeDownload = () => {
             <div id="top_details" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex flex-wrap">
                     
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                    <div className="col col-12 px-2" style={{ display: "flex",  height:"16px", justifyContent: "flex-end" }}  >
                         <span className="col col-5" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left" }}>{userAuth.user.name }</span>
                         <span className="col col-7" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
-                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}>{userAuth.user.email }</span>
-                            <EnvelopeAtFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
+                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}>{userAuth.user.email }</span>
+                            <EnvelopeAtFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"15px", height:"15px", margin:"0 8px 0 0"}}/>
                             </span>
                     </div>
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                    <div className="col col-12 px-2" style={{ display: "flex", height:"16px", justifyContent: "flex-end" }}  >
                         <span className="col col-7" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
                         <span className="col col-5" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
-                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}> +91 {userAuth.user.number ? userAuth.user.number : "Phone Number"} </span>
-                            <TelephoneFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
+                        <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}> +91 {userAuth.user.number ? userAuth.user.number : "Phone Number"} </span>
+                            <TelephoneFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"15px", height:"15px", margin:"0 8px 0 0"}}/>
                             
                         </span>
                     </div>
 
-                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end" }}  >
+                    <div className="col col-12 px-2" style={{ display: "flex", justifyContent: "flex-end",  height:"16px", }}  >
                         <span className="col col-4" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}></span>
                         <span className="col col-8 p-0" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
-                           <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"15px", display:"block"}}>  {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state} </span>
-                            <House viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"18px", height:"18px", margin:"0 8px 0 0"}}/>
+                           <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}>  {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state} </span>
+                            <House viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"15px", height:"15px", margin:"0 8px 0 0"}}/>
                         </span>
                     </div>
 
