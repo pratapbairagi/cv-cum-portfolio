@@ -10,7 +10,7 @@ import ProtectedRoute from './protectedNonProtectedRoute/protectedRoute';
 import Dashboard from './pages/dashboard';
 import ResumeForm from './components/ui/resumeForm.jsx/resumeForm';
 import ResumeDownload from './components/resumeDownload/resumeDownload';
-import Portfolio from './pages/portfolio';
+import Portfolio from './pages/portfolio/portfolio';
 import Search_portfolio from './pages/search_portfolio/searchPortfolio';
 // bacnic IT company
 // delhi nirman vihar
