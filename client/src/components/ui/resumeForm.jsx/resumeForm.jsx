@@ -12,7 +12,7 @@ const ResumeForm = () => {
     const location = useNavigate();
     const { popupInfo, setPopupInfo} = useContext(UserContext);
 
-    console.log("state => ", state)
+    // console.log("state => ", state)
 
     const [contentEdit, setContentEdit] = useState(undefined)
     let [objectContents, setObjectContents] = useState([])
@@ -23,25 +23,23 @@ const ResumeForm = () => {
                 const url = `${process.env.REACT_APP_SERVER_URL}/portfolio/user/${id}`
                 let { data } = await axios.get(url, { headers: { "Content-Type": "application/json" } })
                 if (data.success) {
-                    // console.log("in fun", typeof data.user[state.heading])
                     if(state.process === "edit"){
-                        setContentEdit(!data.user[state.heading] ? "Any" : data.user[state.heading]);
-
+                            setContentEdit(!data.user[state.heading] ? "Any" : data.user[state.heading]);
                     }else{
-                        console.log("image add => ", data.user[state.heading])
                         setContentEdit(data.user[state.heading]);
                     }
 
                     if (typeof data.user[state.heading] === "object") {
                         let selectedContent = data.user[state.heading].filter(v => v.id === state.defaultData.id);
-                        // console.log("selectedContent edit ==> ", selectedContent)
-                        // console.log("selectedContent add ==> ", data.user[state.heading])
                         setObjectContents(selectedContent[0])
-                        // setObjectContents(data.user[state.heading][0])
                     }
                     if (typeof data.user[state.heading] === "string") {
-                        console.log("string =>> ", data.user[state.heading])
+                        if(state.heading === "password"){
+                            setObjectContents({})
+                        }
+                        else{
                         setObjectContents(data.user[state.heading])
+                        }
                     }
                 }
             } catch (error) {
@@ -81,7 +79,15 @@ const ResumeForm = () => {
         }
 
         if (typeof contentEdit === "string") {
-            setObjectContents(value)
+            if(state.heading === "password"){
+            setObjectContents({
+                ...objectContents,
+                [name] : value
+            })
+            }
+            else{
+                setObjectContents(value)
+            }
         }
     };
 
@@ -158,14 +164,24 @@ const ResumeForm = () => {
                     <div className="col col-12 d-flex flex-column justify-content-center align-items-center" style={{ padding: "18px 18px", minWidth: "260px", background: "rgba(0, 128, 128, 0.363)", borderRadius: "4px", boxShadow: ".3px .3px 2px grey" }}>
                         <h5 className="col col-10" style={{ color: "white", padding: "4px 8px", margin: "0 auto", textTransform: "uppercase", fontWeight: "800" }}>{state.heading}</h5>
                         {typeof contentEdit === "string" ?
-                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={contentEdit} name={state.heading} placeholder={state.heading} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                        ( state.heading === "password" ?
+                        <>
+                            <Input id={"editcontentPassword"} inputChangeHandler={submitEditContent} defaultValue={""} name={"oldPassword"} placeholder={"Old Password"} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={`${state.heading}`} placeholder={state.heading} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                        
+                        </> :
+                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={state.heading} placeholder={`New Password`} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                        )
                             :
 
                             state.process === "add" ? (contentEdit !== undefined && Object.keys(contentEdit[0]).map((v, i) => {
+                                {console.log("password => ", v)}
+
                                 return v !== "id" && v !== "public_id" && <Input type={`${v === "url" ? "file" : v === "level" ? "range" : "text"}`} _key={i} id={"editcontent"} name={v} inputChangeHandler={submitEditContent} defaultValue={v} placeholder={v} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                             }))
                                 :
                                 state.process === "edit" && Object.keys(objectContents).map((v, i) => {
+                                    {console.log("password => ", v)}
                                     return v !== "id" && v !== "public_id" && <Input type={`${v === "url" ? "file" : v === "level" ? "range" : "text"}`} key={i} id={"editcontent"} name={v} inputChangeHandler={submitEditContent} defaultValue={Object.values(objectContents)[i]} placeholder={v} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                                 })
 

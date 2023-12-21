@@ -136,7 +136,7 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        default: "RZ-26/14, Tughlakabad"
+        default: ""
     },
     country: {
         type: String,
@@ -169,7 +169,7 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.comparePassword = async function (oldPassword) {
-    let isPasswordMatch = bcrypt.compare(oldPassword, this.password);
+    let isPasswordMatch = await bcrypt.compare(oldPassword, this.password);
     return isPasswordMatch;
 }
 

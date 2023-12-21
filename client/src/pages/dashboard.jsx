@@ -90,10 +90,14 @@ const navigate = useNavigate()
 
 
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "6px 12px", borderRadius: "4px", backgroundColor: "rgb(90, 90, 183)", marginTop: "10px", cursor: "pointer" }}>
-                        <img src={img} style={{ width: "28px", borderRadius: "50%" }} alt="" />
+                        { userAuth.auth && userAuth.user.image?.length > 1 ?
+                        <img onClick={()=> alert("hhh")} src={userAuth.user.image[1].url} style={{ width: "28px", aspectRatio:"1/1", borderRadius: "50%", objectFit:'contain', border:"1px solid white" }} alt="" />
+                        :
+                        <div style={{ width: "28px", borderRadius: "50%", aspectRatio:"1/1", border:"1px solid white", fontSize:"6px", color:"black", lineHeight:"28px", background:"white", fontWeight:"400", letterSpacing:"1px"}} >IMAGE</div>
+                        }
                         <div className="d-none d-md-flex" style={{ display: "flex", flexDirection: "column", marginLeft: "6px" }}>
-                            <p className="p-0 m-0" style={{ fontSize: "8px", color: "whitesmoke", textAlign: "left", fontWeight: "600" }}>Pratap</p>
-                            <p className="p-0 m-0" style={{ fontSize: "8px", color: "rgb(224, 213, 213)" }}>Project Manager</p>
+                            <p className="p-0 m-0" style={{ fontSize: "8px", color: "whitesmoke", textAlign: "left", fontWeight: "600" }}>{userAuth.user.name}</p>
+                            <p className="p-0 m-0" style={{ fontSize: "8px", color: "rgb(224, 213, 213)" }}>{userAuth.auth ? userAuth.user.profession : ""}</p>
 
                         </div>
                         <CaretDown style={{ marginLeft: "auto" }} color="rgb(184, 177, 177)" />

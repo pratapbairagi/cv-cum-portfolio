@@ -78,8 +78,8 @@ const ResumeDownload = () => {
 
     return (
         <div className="container" style={{ width: `100%`, position:"relative", margin:"0 auto", padding:"0"}}>
-             {resumeDownloadClass === true && <div style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex",  justifyContent:"center", flexWrap:"wrap", gap: "10px", padding: "8px 0", margin: "10px auto", marginTop:"0", background:"rgb(32, 30, 30)" }}>
-               <h6 style={{width:"100%", fontSize:"12px",color:"whitesmoke"}}>HIDE SECTION IN RESUME PDF</h6>
+               <h6 style={{width:"100%", fontSize:"12px",color:"rgb(32, 30, 30)", margin:"10px auto"}}>HIDE SECTION IN RESUME PDF</h6>
+             {resumeDownloadClass === true && <div className="justify-content-start justify-content-md-center px-2" style={{ width: "100%", overflowX: "auto", height: "max-content", display: "flex",  justifyContent:"center", gap: "10px", padding: "8px 0", margin: "10px auto", marginTop:"0" }}>
                 <ToggleBtn clss="top_details" />
                 <ToggleBtn clss="objective" />
                 <ToggleBtn clss="experience" />
@@ -91,7 +91,7 @@ const ResumeDownload = () => {
             </div>}
 
 
-        <div ref={pdfRef} style={{ width: `100%`, boxShadow:"0 1px 5px red", height:"842px", overflow:"visible", padding:"54px 20px 14px 16px", margin:"auto" }}>
+        <div ref={pdfRef} style={{ width: `100%`, boxShadow:"0 0 2px red", height:"936px", overflow:"visible", padding:"54px 20px 14px 16px", margin:"auto" }}>
         {/* <div ref={pdfRef} style={{ width: "100%", border:"1px solid red", overflow:"hidden", padding:"24px 10px 14px 10px", margin:"auto" }}> */}
 
 
@@ -212,7 +212,7 @@ const ResumeDownload = () => {
                     </h6>
                 </div>
                 {userAuth.user.skill?.map((v, i) => {
-                    return v.skill !== "" && <div className="col col-12 d-flex flex-wrap p-0 gap-0 g-0" style={{gap:"0"}}>
+                    return v.skill !== "" && <div key={i} className="col col-12 d-flex flex-wrap p-0 gap-0 g-0" style={{gap:"0"}}>
                         <div className="col col-9 px-1 m-0 py-0 m-0" style={{ height: "16px", display: "flex", alignItems: "center" }}>
                             <div style={{ height: "16px", width: "90%", color: "rgb(34, 31, 31)", fontWeight: "400", lineHeight: "16px", textAlign: "left", padding: "0 20px", fontSize: "50%"}}> {i+" ."} {v.skill ? v.skill : "HTML"}</div>
                         </div>

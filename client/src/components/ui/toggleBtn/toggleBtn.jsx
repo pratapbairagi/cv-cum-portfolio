@@ -27,7 +27,7 @@ const ToggleBtn = ({ clss }) => {
                     // e.target.checked ? document.getElementById(`${clss}`).style.display = "none" : document.getElementById(`${clss}`).style.display = "flex"
                     }} type="checkbox" name="" id="" />
             </div>
-            <span style={{ color: 'whitesmoke', textTransform:"uppercase", fontSize: "7px", fontWeight: "500" }}>{clss}</span>
+            <span style={{ color: 'rgb(32, 30, 30)', textTransform:"uppercase", fontSize: "7px", fontWeight: "500" }}>{clss}</span>
         </div>
     )
 }

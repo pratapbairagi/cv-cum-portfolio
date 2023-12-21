@@ -140,6 +140,9 @@ exports.getUser = async (req, res, next) => {
 exports.editUser = async (req, res, next) => {
     try {
 
+        console.log("password => ", req.body)
+
+
         let user = await User.findOne({ _id: req.params.id });
 
         if (req.body.process === "add") {
@@ -161,6 +164,15 @@ exports.editUser = async (req, res, next) => {
             }
         }
         if (req.body.process === "edit") {
+            if(req.body.editingContentName === "password"){
+                let isPasswordMatch = await user.comparePassword(req.body.content.oldPassword)
+                
+                if(!isPasswordMatch){
+                    return next( new ErrorHandler("Old password does not match !", 403))
+                }
+                user[req.body.content.password] = req.body.content.password;
+            }
+            else{
             if (req.body.content.url !== undefined) {
                 if (req.body.content.url.includes("data:image")) {
                     await cloudinary.uploader.destroy(req.body.content.public_id);
@@ -193,6 +205,7 @@ exports.editUser = async (req, res, next) => {
                
                 user[req.body.editingContentName] = editingContent;
             }
+        }
         };
 
         if (req.body.process === "delete") {

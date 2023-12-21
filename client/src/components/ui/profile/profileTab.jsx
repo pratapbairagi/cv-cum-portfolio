@@ -29,8 +29,9 @@ const ProfileTab = () => {
 
             <div className="col col-12 p-1" style={{ height: "200px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "rgb(228, 226, 226)", position: "relative" }}>
                 <div style={{ height: "50%", top: "10%", borderRadius: "50%", aspectRatio: "1/1", boxShadow: "1px 1px 4px grey", background: "transparent", position: "absolute" }}>
-                    <img style={{ width: "102px", height: "97px", marginTop:"2px", borderRadius: "50%" }} src={userAuth.user.image.length > 1 ? userAuth.user.image[1].url : ""} alt="" />
-
+                    <a href={userAuth.user.image[1].url}>
+                    <img style={{ width: "102px", height: "102px", aspectRatio:"1/1", objectFit:"contain", borderRadius: "50%" }} src={userAuth.user.image.length > 1 ? userAuth.user.image[1].url : ""} alt="" />
+                    </a>
                     <div onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "image", defaultData: userAuth.user.image.length > 1 ? userAuth.user.image[1] : userAuth.user.image, process: `${userAuth.user.image.length > 1 ? "edit" : "add"}` } })} style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", top: "-24px", right: "-72px", background: "white" }}>
                         <Upload style={{ width: "16px", height: "16px", transform: "translateY(-4px)", color: "#5A5AB7" }} />
                     </div>
@@ -41,13 +42,16 @@ const ProfileTab = () => {
                     <strong style={{ color: "#5A5AB7", fontWeight: "800", textTransform: "uppercase", padding: "3px 9px" }}>{userAuth.user.name}</strong>
                     <p className=" m-0" style={{ color: "rgb(228, 226, 226)", width: "65%", maxWidth: "130px", fontWeight: "500", fontSize: "12px", padding: " 3px", border: "1px solid rgb(228, 226, 226)" }}>29/11/2029</p>
                 </div>
+
             </div>
             <div className="col col-12 p-2 pb-5" style={{ minHeight: "calc(98vh - 220px)", background: "whitesmoke", width: "100%", boxShadow: ".5px .5px 2px grey", margin: "20px auto", marginBottom: "0" }}>
 
                 <div className="row p-0 m-0 d-flex" style={{ width: "100%", height: "max-content", minHeight: "50vh", justifyContent: "space-around", position: "relative" }}>
 
+                
 
-                    <div className="my-2" style={{ width: "92%", height: "max-content", minHeight: "10vh" }}>
+
+                    <div className="my-2 mt-3" style={{ width: "92%", height: "max-content", minHeight: "10vh" }}>
                         <div style={{ fontWeight: "800", color: "#5A5AB7" }}>ABOUT</div>
                         <p style={{ fontSize: "14px", marginTop: "10px", display: "flex", color: "grey", width: "100%" }}>
                             <span style={{ display: "block", width: "100%", padding: "0 10px" }}>  {userAuth.user.about} </span>
@@ -56,14 +60,21 @@ const ProfileTab = () => {
 
                     </div>
 
+                    <div className="my-2 mx-0 py-2" style={{ color:"grey", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", background:"transparent", padding:"2px 10px"}}>
+                    <div className="btn btn-sm px-3" style={{display:"flex", background:"linear-gradient(to right,rgb(53, 53, 120), #5A5AB7, #8080ca)", flexDirection:"row", justifyContent:"center", alignItems:"center", gap:"6px"}}>
+                    <span style={{color:"whitesmoke", fontWeight:"600"}}>PASSWORD</span>
+                    <EditBtnLogo style={{ width: "18px", stroke: "whitesmoke", cursor: "pointer" }} to={`/profile/edit/${userAuth.user._id}`} heading={"password"} defaultData={{password : userAuth.user.password, oldPassword: ""}} />
+                    </div>
+                </div>
+
                     {
                         userAuth.auth === true &&
-                        <ProfileCard _id={userAuth.user._id} heading="PERSONAL INFO" userAuth={{ name: userAuth.user.name, number: userAuth.user.number, email: userAuth.user.email, dob: userAuth.user.dob, status: userAuth.user.status }} />
+                        <ProfileCard _id={userAuth.user._id} heading="PERSONAL INFO" userAuth={{ name: userAuth.user.name, number: userAuth.user.number, email: userAuth.user.email, dob: userAuth.user.dob, status: userAuth.user.status, profession: userAuth.user.profession }} />
                     }
 
                     {
                         userAuth.auth === true &&
-                        <ProfileCard _id={userAuth.user._id} heading="ADDRESS" userAuth={{ country: userAuth.user.country, state: userAuth.user.state, city: userAuth.user.city, pincode: userAuth.user.pincode, profession: userAuth.user.profession }} />
+                        <ProfileCard _id={userAuth.user._id} heading="ADDRESS" userAuth={{address : userAuth.user.address, country: userAuth.user.country, state: userAuth.user.state, city: userAuth.user.city, pincode: userAuth.user.pincode }} />
                     }
 
                     <div className="py-2 col col-12 mt-4 mb-5" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start", position:"relative", columnGap:"40px", width:"92%" }}>
