@@ -244,8 +244,8 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
 
                         <div className={`col col-12 col-lg-6 p-2 m-0 ${resumeDownloadClass === false ? "d-none" : "d-flex"}`} style={{ height: "max-content", border: "1px solid red" }}>
                             <div className="col col-12 d-flex p-0 m-0" style={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }}>
-                                {v.url ?
-                                    <img src={v.url} style={{ width: "100%", aspectRatio: "1/.6", maxHeight: "220px", objectFit: "cover" }} alt="" />
+                                {v?.url ?
+                                    <img src={v?.url} style={{ width: "100%", aspectRatio: "1/.6", maxHeight: "220px", objectFit: "cover" }} alt="" />
                                     :
                                     <img src="https://cdn.dribbble.com/users/3445491/screenshots/7368748/media/f2a515ac4e3a68a77f099dbf07537c0c.gif" style={{ width: "100%", aspectRatio: "1/.6", maxHeight: "220px", objectFit: "cover" }} alt="this is example set of image" />
                                 }

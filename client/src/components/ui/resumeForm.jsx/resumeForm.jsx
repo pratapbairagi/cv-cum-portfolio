@@ -167,21 +167,18 @@ const ResumeForm = () => {
                         ( state.heading === "password" ?
                         <>
                             <Input id={"editcontentPassword"} inputChangeHandler={submitEditContent} defaultValue={""} name={"oldPassword"} placeholder={"Old Password"} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
-                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={`${state.heading}`} placeholder={state.heading} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={`${state.heading}`} placeholder={`New Password`} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                         
                         </> :
-                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={state.heading} placeholder={`New Password`} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={state.heading} placeholder={state.heading} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                         )
                             :
 
                             state.process === "add" ? (contentEdit !== undefined && Object.keys(contentEdit[0]).map((v, i) => {
-                                {console.log("password => ", v)}
-
                                 return v !== "id" && v !== "public_id" && <Input type={`${v === "url" ? "file" : v === "level" ? "range" : "text"}`} _key={i} id={"editcontent"} name={v} inputChangeHandler={submitEditContent} defaultValue={v} placeholder={v} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                             }))
                                 :
                                 state.process === "edit" && Object.keys(objectContents).map((v, i) => {
-                                    {console.log("password => ", v)}
                                     return v !== "id" && v !== "public_id" && <Input type={`${v === "url" ? "file" : v === "level" ? "range" : "text"}`} key={i} id={"editcontent"} name={v} inputChangeHandler={submitEditContent} defaultValue={Object.values(objectContents)[i]} placeholder={v} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
                                 })
 

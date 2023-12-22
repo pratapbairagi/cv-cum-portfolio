@@ -91,7 +91,7 @@ const navigate = useNavigate()
 
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "6px 12px", borderRadius: "4px", backgroundColor: "rgb(90, 90, 183)", marginTop: "10px", cursor: "pointer" }}>
                         { userAuth.auth && userAuth.user.image?.length > 1 ?
-                        <img onClick={()=> alert("hhh")} src={userAuth.user.image[1].url} style={{ width: "28px", aspectRatio:"1/1", borderRadius: "50%", objectFit:'contain', border:"1px solid white" }} alt="" />
+                        <img onClick={()=> alert("hhh")} src={userAuth.user.image[1]?.url} style={{ width: "28px", aspectRatio:"1/1", borderRadius: "50%", objectFit:'contain', border:"1px solid white" }} alt="" />
                         :
                         <div style={{ width: "28px", borderRadius: "50%", aspectRatio:"1/1", border:"1px solid white", fontSize:"6px", color:"black", lineHeight:"28px", background:"white", fontWeight:"400", letterSpacing:"1px"}} >IMAGE</div>
                         }

@@ -14,13 +14,18 @@ exports.userRegister = async (req, res, next) => {
             return next(new ErrorHandler("All fields are required !", 403))
         }
 
-        const userEmailExist = await User.findOne({ email: email });
+        const userEmailExist = await User.findOne({ email: email.toLowerCase() });
+
+        console.log("register =>  ", req.body)
+        console.log("user => ", userEmailExist)
 
 
-        if (userEmailExist) {
+        if (userEmailExist !== null && userEmailExist !== undefined) {
             // throw Error("Email already exist !")
             return next(new ErrorHandler("Email already exist !", 403))
         };
+
+
 
         const isNumberExist = await User.findOne({ number })
 
@@ -33,6 +38,17 @@ exports.userRegister = async (req, res, next) => {
             return next(new ErrorHandler("Number already registered !", 403))
 
         };
+
+        if (req.body.number.length !== 10) {
+            return next(new ErrorHandler("Number must be 10 digits !", 403))
+        }
+
+        if (req.body.password  !== req.body.repassword) {
+            return next(new ErrorHandler("Password and Comfirm Password does not match !", 403))
+        }
+
+        req.body.email = req.body.email.toLowerCase();
+
 
         const user = await User.create(req.body);
 

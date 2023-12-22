@@ -114,8 +114,8 @@ const Portfolio = () => {
 
                         <div className="col col-12 col-lg-6 p-2 m-0 d-flex" style={{ height: "max-content", display:"flex", justifyContent:"center" }}>
                             <div className="col col-12 d-flex p-0 m-0 p-2 d-flex justify-content-center" style={{ fontSize: "16px", fontWeight: "600", justifyContent: "center", gap: "10px", width:"max-content" }}>
-                                {v.url ?
-                                    <img className="w-100" src={v.url} style={{ maxHeight: "50vh", maxWidth:"300px", minWidth:"240px", objectFit: "contain" }} alt="" />
+                                {v?.url ?
+                                    <img className="w-100" src={v?.url} style={{ maxHeight: "50vh", maxWidth:"300px", minWidth:"240px", objectFit: "contain" }} alt="" />
                                     :
                                     <img src="https://cdn.dribbble.com/users/3445491/screenshots/7368748/media/f2a515ac4e3a68a77f099dbf07537c0c.gif" style={{ width: "90%", aspectRatio: "1/.6", maxHeight: "220px", objectFit: "cover" }} alt="this is example set of image" />
                                 }
