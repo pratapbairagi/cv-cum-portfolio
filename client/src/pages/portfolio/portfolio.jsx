@@ -142,7 +142,7 @@ const Portfolio = () => {
                         </div>
                     </div>
                 })} */}
-                 <>
+                 
                 <Swiper
         cssMode={true}
         navigation={true}
@@ -155,9 +155,9 @@ const Portfolio = () => {
         
         
          {userAuth.user.project?.map((v, i) => {
-                    return v.project_name !== "" && <SwiperSlide key={i} className="col col-12 d-flex flex-column-reverse flex-lg-row py-3 flex-wrap" style={{ alignItems: "center", justifyContent:"center", rowGap:"40px" }}>
+                    return v.project_name !== "" && <SwiperSlide key={i} className="col col-12 d-flex flex-column-reverse flex-lg-row py-3 mt-4 flex-wrap" style={{ alignItems: "center", justifyContent:"center", rowGap:"40px" }}>
                         <div className="col col-12 col-lg-6 p-2 py-2 m-0 d-flex flex-column col-lg-6 align-items-center" style={{ height: "max-content", minHeight: "max-content", maxHeight: "220px", justifyContent: "center", rowGap:"16px", position:"relative" }}>
-                        <a href={v.project_url} className="btn btn-primary btn-sm" style={{ padding: "3px 20px", borderRadius:"20px", whiteSpace: "nowrap", position:"absolute", top:"-7px", left:"0px" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</a>
+                        <a href={v.project_url} className="btn btn-primary btn-sm" style={{ padding: "3px 20px", borderRadius:"20px", whiteSpace: "nowrap", position:"absolute", top:"-7px", left:"10px" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</a>
                             
                             <div className="col col-10 py-4" style={{ textAlign: "center", borderTop:"1px solid rgb(13, 110, 253)", borderBottom:"1px solid rgb(13, 110, 253)", padding: "18px 8px", fontSize: "10px", fontWeight: "500", color: "grey" }}>
                                 {v.project_description ? v.project_description : "Anything about your project details, what technologies you have used, how long it took etc."}
@@ -180,7 +180,6 @@ const Portfolio = () => {
                     </SwiperSlide>
                 })}
       </Swiper>
-    </>  
             </div>
 
             <div className=" portfolio_row_4 py-1 px-1" style={{background:"whitesmoke", minHeight:"100dvh", rowGap:"0"}}>
