@@ -34,7 +34,7 @@
     max-height: 100vh; 
     position: relative; 
     display: grid; 
-    background: linear-gradient(to left, rgb(13, 110, 253), white);
+    /* background: linear-gradient(to left, rgb(13, 110, 253), white); */
 }
 
 .portfolio_row_2{
@@ -63,9 +63,11 @@
     padding: 0 6px;
 }
 .portfolio_row_2 h5 span, .portfolio_row_3 h5 span, .portfolio_row_4 h5 span{
-    width: 140px;
+    width: 180px;
     border-left: 1px solid rgb(13, 110, 253);
     border-right: 1px solid rgb(13, 110, 253);
+    font-size: 24px !important;
+
 }
 .portfolio_row_2 h5::before, .portfolio_row_3 h5::before, .portfolio_row_4 h5::before{
     content: " " !important;
@@ -82,3 +84,27 @@
     background: rgb(13, 110, 253);
     margin-top: 12px;
 }
+
+/* swiper */
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }

@@ -122,7 +122,7 @@ const navigate = useNavigate()
                     </button>
                     {/* toggle dashboard button : end */}
 
-                    <div ref={pdfRef} className="row p-0 m-0 mb-4 px-3 py-2 m-0" style={{ alignContent: "flex-start", margin:"0 auto", width:"100%", aspectRatio:"0.7/1", border:"2px double red" }}>
+                    <div ref={pdfRef} className="row p-0 m-0 mb-4 px-3 py-2 m-0" style={{ alignContent: "flex-start", margin:"0 auto", width:"100%", aspectRatio:"0.7/1" }}>
                         <ResumeTab popupInfo={popupInfo} setPopupInfo={setPopupInfo} userAuth={userAuth} getPdfFun={getPdfFun} resumeDownloadClass="resumeDownloadClass"/>
                     </div>
 

@@ -95,8 +95,8 @@ const ResumeDownload = () => {
         {/* <div ref={pdfRef} style={{ width: "100%", border:"1px solid red", overflow:"hidden", padding:"24px 10px 14px 10px", margin:"auto" }}> */}
 
 
-            <div id="top_details" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
-                <div className="col col-12 p-0 d-flex flex-wrap">
+            <div className="p-0" id="top_details" style={{ display: "flex", flexWrap: "wrap" }}>
+                <div  className="col col-12 p-0 d-flex flex-wrap">
                     
                     <div className="col col-12 px-0" style={{ display: "flex",  height:"13px", justifyContent: "flex-end" }}  >
                         <span className="col col-5" style={{ fontSize: "65%", fontWeight: "700", color: "black", textAlign: "left", textTransform:"capitalize" }}>{userAuth.user.name }</span>
@@ -124,11 +124,11 @@ const ResumeDownload = () => {
 
 
                 </div>
+            </div>
                 <div id="objective" className="col col-10" style={{ textAlign: "left", padding: "8px", background: "transparent", color: "rgb(34, 31, 31)", display: "flex", flexDirection: "row", flexWrap: "wrap", borderTop: "1px solid grey", borderBottom: "1px solid grey", margin: "15px auto", marginTop:"20px" }}>
 
                     <span style={{ width: "calc( 100% )", display: "block", fontSize: "55%", fontWeight: "400" }}>{userAuth.user.objective}</span>
                 </div>
-            </div>
 
 
             <div id="experience" className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
