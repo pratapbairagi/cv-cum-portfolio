@@ -210,7 +210,7 @@ exports.editUser = async (req, res, next) => {
             }
             else {
                 
-                if(typeof user[req.body.editingContentName] === "string"){
+                if(typeof user[req.body.editingContentName] === "string" || typeof user[req.body.editingContentName] === "number"){
                      editingContent = req.body.content
                 }
                 else{
