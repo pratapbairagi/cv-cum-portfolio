@@ -79,7 +79,7 @@ const ResumeForm = () => {
 
         }
 
-        if (typeof contentEdit === "string") {
+        if (typeof contentEdit === "string" || typeof contentEdit === "number" ) {
             if(state.heading === "password"){
             setObjectContents({
                 ...objectContents,
@@ -92,10 +92,7 @@ const ResumeForm = () => {
         }
     };
 
-    // console.log(" edit content ", contentEdit)
-
     const submitEditContentForm = async () => {
-
         try {
 
             let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/resume/edit/${id}`
@@ -114,7 +111,7 @@ const ResumeForm = () => {
                 }
             }
 
-            if (typeof contentEdit === "string" && typeof contentEdit !== "undefined") {
+            if ((typeof contentEdit === "string" || typeof contentEdit === "number") && typeof contentEdit !== "undefined") {
                 let { data } = await axios.put(url, { content: objectContents, editingContentName: state.heading, process: state.process }, { Headers: { "Content-Type": "application/json" } });
                 if (data.success) {
                     setPopupInfo({
@@ -123,8 +120,6 @@ const ResumeForm = () => {
                         show: true
                     });
 
-                    console.log("success =>> ", data)
-                    
                     location("/dashboard")
                 }
 
