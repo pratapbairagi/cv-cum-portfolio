@@ -216,9 +216,9 @@ const ResumeDownload = () => {
                         <div className="col col-9 px-1 m-0 py-0 m-0" style={{ height: "16px", display: "flex", alignItems: "center" }}>
                             <div style={{ height: "16px", width: "90%", color: "rgb(34, 31, 31)", fontWeight: "400", lineHeight: "16px", textAlign: "left", padding: "0 20px", fontSize: "50%"}}> {i+" ."} {v.skill ? v.skill : "HTML"}</div>
                         </div>
-                        <div className="col col-3 py-0 m-0" style={{ color: "grey", fontSize: "55%", fontWeight: "600", justifyContent: "center", height: "16px", display: "flex", alignItems: "center" }}>
+                        {/* <div className="col col-3 py-0 m-0" style={{ color: "grey", fontSize: "55%", fontWeight: "600", justifyContent: "center", height: "16px", display: "flex", alignItems: "center" }}>
                             {v.skill ? v.level <= 33 ? "Beginner" : v.level >= 66 ? "Expert" : "Intermediate" : "Intermediate"}
-                        </div>
+                        </div> */}
                       
                     </div>
                 })}
@@ -263,7 +263,7 @@ const ResumeDownload = () => {
                 <div className="py-2 px-2" style={{ flexDirection: "row", width:"100%", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems:"center" }}>
                 
                 <div className="col col-3 m-0 mt-1" style={{ fontSize:"55%", fontWeight:"600", color:"black", lineHeight:"20px", height:"20px", textAlign:"left", paddingLeft:"3%"}}>Date Of Birth</div>
-                <div className="col col-9 p-0 m-0 mt-1" style={{ fontSize:"55%", fontWeight:"600", color:"rgb(34, 31, 31)", lineHeight:"20px", height:"20px", textAlign:"left"}}>18th, May, 1994</div>
+                <div className="col col-9 p-0 m-0 mt-1" style={{ fontSize:"55%", fontWeight:"600", color:"rgb(34, 31, 31)", lineHeight:"20px", height:"20px", textAlign:"left"}}>{userAuth.user.dob}</div>
                    
                 <div className="col col-3 m-0 mt-1" style={{ fontSize:"55%", fontWeight:"600", color:"black", lineHeight:"20px", height:"20px",  paddingLeft:"3%", textAlign:"left"}}>Status</div>
                 <div className="col col-9 p-0 m-0 mt-1" style={{ fontSize:"55%", fontWeight:"600", color:"rgb(34, 31, 31)", lineHeight:"20px", height:"20px", textAlign:"left"}}>Unmarried</div>
@@ -277,9 +277,9 @@ const ResumeDownload = () => {
                               
                                 <span style={{ display: "block", color: 'rgb(34, 31, 31)', fontSize: "50%", fontWeight: "600", padding: "2px 0", width:"100%" }}>{v.language}</span>
                             </div>
-                            <div className="p-0 m-0 px-2" style={{ background: "white",  color: "grey", fontSize: "50%", fontWeight: "500", justifyContent: "center", height: `20px`, display: "flex", alignItems: "center" }}>
+                            {/* <div className="p-0 m-0 px-2" style={{ background: "white",  color: "grey", fontSize: "50%", fontWeight: "500", justifyContent: "center", height: `20px`, display: "flex", alignItems: "center" }}>
                                 {v.language ? v.level <= 33 ? "Beginner" : v.level >= 66 ? "Expert" : "Intermediate" : "Intermediate"}
-                            </div>
+                            </div> */}
                         
                         </div>
                     })}
