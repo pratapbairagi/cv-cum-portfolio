@@ -103,7 +103,7 @@ const ResumeDownload = () => {
                         <span className="col col-7" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
                         <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}>{userAuth.user.email }</span>
                             <EnvelopeAtFill viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"15px", height:"15px"}}/>
-                            </span>
+                        </span>
                     </div>
                     <div className="col col-12 px-0" style={{ display: "flex", height:"13px", justifyContent: "flex-end" }}  >
                         <span className="col col-7" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}>{userAuth.user.profession}</span>
@@ -117,7 +117,7 @@ const ResumeDownload = () => {
                     <div className="col col-12 px-0" style={{ display: "flex", justifyContent: "flex-end",  height:"13px", }}  >
                         <span className="col col-4" style={{ fontSize: "58%", fontWeight: "500", color: "grey", textAlign: "left" }}></span>
                         <span className="col col-8 p-0" style={{ fontSize: "58%", height:"20px", fontWeight: "500", color: "black", textAlign: "right", display:"flex", flexDirection:"row", alignItems:"flex-center", justifyContent:"flex-end", columnGap:"10px" }}>
-                           <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}>  {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state} </span>
+                           <span style={{maxWidth:"90%", wordBreak:"break-word", height:"100%", lineHeight:"13px", display:"block"}}>  {userAuth.user.address}, {userAuth.user.city}, {userAuth.user.state} - {userAuth.user.pincode}. </span>
                             <House viewBox="-2 -2 20 20" style={{padding:"0 2px 2px 0", aspectRatio:"1/1", width:"15px", height:"15px"}}/>
                         </span>
                     </div>
