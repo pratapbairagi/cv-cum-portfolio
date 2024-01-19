@@ -24,20 +24,21 @@ const ResumeForm = () => {
                 let { data } = await axios.get(url, { headers: { "Content-Type": "application/json" } })
                 if (data.success) {
                     if(state.process === "edit"){
-                            setContentEdit(!data.user[state.heading] ? "Any" : data.user[state.heading]);
-                    }else{
+                            setContentEdit(!data.user[state.heading] ? "Any" : data.user[state.heading]);                   
+                        }else{
                         setContentEdit(data.user[state.heading]);
                     }
 
                     if (typeof data.user[state.heading] === "object") {
                         let selectedContent = data.user[state.heading].filter(v => v.id === state.defaultData.id);
                         setObjectContents(selectedContent[0])
+                        console.log("object")
                     }
-                    if (typeof data.user[state.heading] === "string") {
+                    if (typeof data.user[state.heading] === "string" ) {
                         if(state.heading === "password"){
                             setObjectContents({})
                         }
-                        else{
+                        else if(typeof data.user[state.heading] === "number"){
                         setObjectContents(data.user[state.heading])
                         }
                     }
@@ -54,8 +55,8 @@ const ResumeForm = () => {
 
         let { name, value } = e.target;
 
-        if (typeof contentEdit === "object") {
-            if (name === "url") {
+        if ( typeof contentEdit === "object" ) {
+            if ( name === "url" ) {
                 let reader = new FileReader();
                 reader.addEventListener("load", function () {
                     if (reader.DONE) {
@@ -90,6 +91,8 @@ const ResumeForm = () => {
             }
         }
     };
+
+    // console.log(" edit content ", contentEdit)
 
     const submitEditContentForm = async () => {
 
@@ -163,7 +166,12 @@ const ResumeForm = () => {
 
                     <div className="col col-12 d-flex flex-column justify-content-center align-items-center" style={{ padding: "18px 18px", minWidth: "260px", background: "rgba(0, 128, 128, 0.363)", borderRadius: "4px", boxShadow: ".3px .3px 2px grey" }}>
                         <h5 className="col col-10" style={{ color: "white", padding: "4px 8px", margin: "0 auto", textTransform: "uppercase", fontWeight: "800" }}>{state.heading}</h5>
-                        {typeof contentEdit === "string" ?
+                        {typeof contentEdit === "number"  ?
+                        <>
+                            <Input id={"editcontent"} inputChangeHandler={submitEditContent} defaultValue={""} name={state.heading} placeholder={state.heading} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
+                        </>
+                        :
+                        typeof contentEdit === "string" ?
                         ( state.heading === "password" ?
                         <>
                             <Input id={"editcontentPassword"} inputChangeHandler={submitEditContent} defaultValue={""} name={"oldPassword"} placeholder={"Old Password"} css={{ width: "100%", maxWidth: "300px", border: "1px solid grey", borderRadius: "6px", outline: "none", height: "32px", fontSize: "12px", color: "grey", padding: "4px 10px", marginTop: "16px" }} />
