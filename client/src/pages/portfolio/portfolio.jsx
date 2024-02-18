@@ -65,7 +65,7 @@ const Portfolio = () => {
 
     return (
         <div className=" p-0 portfolio_container py-0 px-0" style={{ width:"100%"}}>
-            <div className="row h-full sm:h-full md:h-full lg:h-5/6 xl:h-5/6 d-flex flex-column flex-md-row p-0 m-0 align-items-center justify-content-center border border-2">
+            <div className="row h-full sm:h-full md:h-full lg:h-5/6 xl:h-5/6 d-flex flex-column flex-md-row p-0 m-0 align-items-center justify-content-center">
                 <div className="lg:h-5/6 sm:h-2/4 col-12 col-md-7 col-lg-6 order-2 sm:order-2 md:order-2 lg:order-1 order-md-1 justify-content-center justify-content-md-center align-items-center d-flex flex-column">
                     <div className="w-full min-w-full mt-4 pl-0 sm:pl-0 md:pl-5 lg:pl-6 " >
                         <div className="bootstrap- text-center text-md-start tailwind- w-full text-red-800 mx:0 px:0 font-extrabold text-sm lg:text-2xl uppercase">Hey there,</div>
