@@ -146,7 +146,7 @@
     display: none;
   }
 
-  @media only screen and (min-width : 0px) and ( max-width: 767px){
+  /* @media only screen and (min-width : 0px) and ( max-width: 767px){
    .portfolio_container .row{
     min-height: 100vh;
    }
@@ -154,24 +154,22 @@
     height: 45vh;
    }
   
-  }
+  } */
 
-  @media only screen and ( max-width: 920px){
+  /* @media only screen and ( max-width: 920px){
     .portfolio_container .row{
       min-height: 80vh;
      }
-  }
+  } */
 
-  @media only screen and ( min-width: 921px){
+  /* @media only screen and ( min-width: 921px){
     .portfolio_container .row{
       height: 90vh;
       justify-content: center;
       align-items: center;
-      /* border: 1px solid red; */
 
      }
     .portfolio_container .row > div:nth-child(2){
-      /* border: 1px solid red; */
       height: 90%;
     }
-  }
+  } */

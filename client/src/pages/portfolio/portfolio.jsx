@@ -61,14 +61,16 @@ const Portfolio = () => {
 
     let navigate = useNavigate();
 
+    console.log("user => ", userAuth.user.project)
+
     return (
-        <div className="container p-0 portfolio_container py-0 px-0">
-            <div className="row d-flex flex-column flex-lg-row p-0 m-0 align-items-center justify-content-center">
-                <div className="lg:h-5/6 sm:h-2/4 col-12 col-md-7 order-2 order-md-1 justify-content-center justify-content-md-center align-items-center d-flex flex-column">
-                    <div className="w-full min-w-full mt-4 lg:pl-6" >
+        <div className=" p-0 portfolio_container py-0 px-0" style={{ width:"100%"}}>
+            <div className="row h-full sm:h-full md:h-full lg:h-5/6 xl:h-5/6 d-flex flex-column flex-md-row p-0 m-0 align-items-center justify-content-center border border-2">
+                <div className="lg:h-5/6 sm:h-2/4 col-12 col-md-7 col-lg-6 order-2 sm:order-2 md:order-2 lg:order-1 order-md-1 justify-content-center justify-content-md-center align-items-center d-flex flex-column">
+                    <div className="w-full min-w-full mt-4 pl-0 sm:pl-0 md:pl-5 lg:pl-6 " >
                         <div className="bootstrap- text-center text-md-start tailwind- w-full text-red-800 mx:0 px:0 font-extrabold text-sm lg:text-2xl uppercase">Hey there,</div>
                         <div className="bootstrap- justify-content-center justify-content-md-start p-0 m-0 tailwind w-full flex gap-2 text-3xl lg:text-5xl font-extrabold text-red-800 uppercase text-nowrap text-gray-600 mt-1 lg:mt-12"> <span className=" text-3xl  lg:text-5xl font-extrabold text-nowrap text-red-800">I AM </span>  {userAuth.user.name ? userAuth.user.name : "Your Name"}</div>
-                        <div className="bootstrap- text-center text-md-start w-full  text-sm md:text-base lg:text-2xl text-left text-gray-500 lowercase max-w-md lg:max-w-2xl mt-3 mt-md-4 "> I'm {userAuth.user.profession ? userAuth.user.profession : "my profession : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae saepe obcaecati aliquid est architecto voluptatibus!"} {userAuth.user.objective ? userAuth.user.objective : "Fill your career objective to print here."}</div>
+                        <div className="bootstrap- text-center text-md-start w-full text-sm md:text-base lg:text-2xl text-left text-gray-500 lowercase max-w-full lg:max-w-md lg:max-w-2xl mt-3 mt-md-4"> I'm {userAuth.user.profession ? userAuth.user.profession : "my profession : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae saepe obcaecati aliquid est architecto voluptatibus!"} {userAuth.user.objective ? userAuth.user.objective : "Fill your career objective to print here."}</div>
 
                         <div className="bootstrap- d-flex flex-column column-gap-5 row-gap-2 flex-md-row tailwind- mt-12 lg:mt-14">
                             <div onClick={() => navigate("/")} className="w-auto px-4 h-9 lg:h-11 text-base lg:text-2xl flex items-center rounded-sm justify-center font-bold bg-red-800 text-gray-200 border-1 border-red-800" >Resume</div>
@@ -85,7 +87,7 @@ const Portfolio = () => {
                     {/* <h6 className="mt-2" style={{width:"90%", fontSize:"10px", padding:"3px", margin:"0", marginLeft:"auto", textAlign:"right", borderTop:"1px solid rgb(13, 110, 253)", color:"rgb(13, 110, 253)"}}>Connect with me</h6> */}
 
                 </div>
-                <div style={{ position: "relative" }} className=" col-12 col-md-5 p-0 py-0 order-1 order-md-2">
+                <div style={{ position: "relative" }} className=" col-12 col-md-5 col-lg-5 p-0 py-0 order-1 sm:order-1 md:order-1 lg:order-2">
                     {/* <span style={{position:"absolute", width:"max-content", border:"1px solid grey", padding:"0 1rem", color:"grey", left:".5rem", zIndex:"2", top:"2rem", fontSize:"14px", fontWeight:"500", borderRadius:"2rem", borderBottomRightRadius:"0"}}> Skills </span>
                     <span style={{position:"absolute", width:"max-content", border:"1px solid grey", padding:"0 1rem" , color:"grey", right:".5rem", zIndex:"2", top:"2rem", fontSize:"14px", fontWeight:"500", borderRadius:"2rem", borderBottomLeftRadius:"0"}}> Projects </span>
                     <span style={{position:"absolute", width:"max-content", border:"1px solid grey", padding:"0 1rem" , color:"grey", left:".5rem", zIndex:"2", top:"49%", fontSize:"14px", fontWeight:"500", borderRadius:"2rem", borderBottomRightRadius:"0"}}> Qualification </span>
@@ -102,7 +104,7 @@ const Portfolio = () => {
                 </div>
             </div>
 
-            <div style={{ minHeight: "100dvh", columnGap: "2rem" }} className="bg-gray-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-content-center p-2 px-3 g-4 py-3">
+            <div style={{ minHeight: "100dvh", columnGap: "2rem" }} className="bg-gray-100 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 justify-content-center p-2 px-3 g-4 py-3">
                 {/* <h5 className="mt-2 mb-3" style={{  }}>
                    <span> ABOUT ME </span>
                 </h5> */}
@@ -143,8 +145,8 @@ const Portfolio = () => {
                         </li>
 
                         <li className="flex justify-between w-11/12 text-base font-medium text-gray-600">
-                            <span className="font-normal">Email</span>
-                            <span className="text-end" style={{maxWidth:"60%", wordBreak:"break-all"}}>pratapbairagi4cgshop@gmail.com</span>
+                            <span className="font-normal">Phone</span>
+                            <span className="text-end" style={{maxWidth:"60%", wordBreak:"break-all"}}>+91 8287889123</span>
                         </li>
 
                     </ul>
@@ -245,8 +247,8 @@ const Portfolio = () => {
 
                     </ul>
                 </div>
-                <div className="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-3  bg-gray-100 h-full">
-                    <h4 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Education & Qualification</h4>
+                <div className="col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-2  bg-gray-100 h-full">
+                    <h4 className="mt-5 mt-md-3 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Education & Qualification</h4>
 
                     <div className=" w-full flex flex-wrap px-0 items-center py-4 pb-4 justify-center">
 
