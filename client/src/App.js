@@ -13,6 +13,8 @@ import ResumeDownload from './components/resumeDownload/resumeDownload';
 import Portfolio from './pages/portfolio/portfolio';
 import Search_portfolio from './pages/search_portfolio/searchPortfolio';
 import useLoggednHook from './hooks/customeHook';
+import "tailwindcss/tailwind.css";
+import "./style.css"
 // bacnic IT company
 // delhi nirman vihar
 // pi, hr
