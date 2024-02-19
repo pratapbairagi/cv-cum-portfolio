@@ -112,6 +112,16 @@ const userSchema = new mongoose.Schema({
             }
         ]
     },
+    other_skill : {
+        type : [Object],
+        default : [
+            {
+                skill : "",
+                level : 0,
+                id : 0
+            }
+        ]
+    },
     language: {
         type: [Object],
         default: [
@@ -126,6 +136,7 @@ const userSchema = new mongoose.Schema({
         type: [Object],
         default: {
             project_name: "",
+            project_category: "",
             project_url: "",
             project_description: "",
             url: "",

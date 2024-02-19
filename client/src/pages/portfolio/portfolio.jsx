@@ -18,6 +18,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import { useState } from "react";
+import { useReducer } from "react";
 // import 'swiper/css/navigation';
 // import 'swiper/css/pagination';
 // import 'swiper/css/scrollbar';
@@ -27,8 +29,29 @@ const Portfolio = () => {
 
 
     let { userAuth, popupInfo, setPopupInfo, setUserAuth } = useContext(UserContext);
-
-
+    
+    let reducer = { selectedProjectCategory : "", projects: [], selectedProject_categories : [], uniqueCategories : []  }
+    
+    let [categoryState, dispatch] = useReducer(
+        reducer = ( state , 
+        action) => {
+            switch(action.type){
+                case "INITIAL_STATE" : return {
+                    selectedProjectCategory : action.selectProject,
+                    projects : action.project_categories,
+                    selectedProject_categories : action.selectedProject_categories,
+                    uniqueCategories : action.uniqueCategories
+                }
+                case "SELECT_PROJECT_CATEGORY" : return {
+                    ...state,
+                    selectedProjectCategory : action.projectCategory,
+                    selectedProject_categories : state.projects.filter(v=> v.project_category === action.projectCategory)
+                }
+                default : return state;
+            }
+    }, 
+    );
+   
 
     const getSearchedPortfolioFun = async () => {
         try {
@@ -46,7 +69,7 @@ const Portfolio = () => {
                     user: data.user,
                     auth: true,
                     message: ""
-                })
+                });
             }
         } catch (error) {
 
@@ -61,16 +84,26 @@ const Portfolio = () => {
 
     let navigate = useNavigate();
 
-    console.log("user => ", userAuth.user.project)
+
+    useEffect(() => {
+        if (userAuth.user) {
+            dispatch({type : "INITIAL_STATE", 
+            selectProject: userAuth?.user?.project?.length > 0 && userAuth?.user?.project !== "undefined" ? userAuth?.user?.project[1]?.project_category : "" , 
+            project_categories : userAuth?.user?.project?.length > 0 && userAuth?.user?.project != "undefined" ? userAuth?.user?.project : [], 
+            selectedProject_categories : userAuth?.user?.project?.length > 0 && userAuth?.user?.project != "undefined" ? userAuth?.user?.project?.filter(v=>v.project_category === userAuth?.user?.project[1]?.project_category) : [],
+            uniqueCategories : userAuth?.user?.project?.length > 0 && userAuth?.user?.project != "undefined" ? [...new Set(userAuth.user.project.map(v=>v.project_category)) ]: []
+        })
+        }
+    }, [userAuth]);
 
     return (
-        <div className=" p-0 portfolio_container py-0 px-0" style={{ width:"100%"}}>
+        <div className=" p-0 portfolio_container py-0 px-0" style={{ width: "100%" }}>
             <div className="row h-full sm:h-full md:h-full lg:h-5/6 xl:h-5/6 d-flex flex-column flex-md-row p-0 m-0 align-items-center justify-content-center">
                 <div className="lg:h-5/6 sm:h-2/4 col-12 col-md-7 col-lg-6 order-2 sm:order-2 md:order-2 lg:order-1 order-md-1 justify-content-center justify-content-md-center align-items-center d-flex flex-column">
                     <div className="w-full min-w-full mt-4 pl-0 sm:pl-0 md:pl-5 lg:pl-6 " >
                         <div className="bootstrap- text-center text-md-start tailwind- w-full text-red-800 mx:0 px:0 font-extrabold text-sm lg:text-2xl uppercase">Hey there,</div>
                         <div className="bootstrap- justify-content-center justify-content-md-start p-0 m-0 tailwind w-full flex gap-2 text-3xl lg:text-5xl font-extrabold text-red-800 uppercase text-nowrap text-gray-600 mt-1 lg:mt-12"> <span className=" text-3xl  lg:text-5xl font-extrabold text-nowrap text-red-800">I AM </span>  {userAuth.user.name ? userAuth.user.name : "Your Name"}</div>
-                        <div className="bootstrap- text-center text-md-start w-full text-sm md:text-base lg:text-2xl text-left text-gray-500 lowercase max-w-full lg:max-w-md lg:max-w-2xl mt-3 mt-md-4"> I'm {userAuth.user.profession ? userAuth.user.profession : "my profession : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae saepe obcaecati aliquid est architecto voluptatibus!"} {userAuth.user.objective ? userAuth.user.objective : "Fill your career objective to print here."}</div>
+                        <div className="bootstrap- text-center text-md-start w-full text-sm md:text-base lg:text-2xl text-left text-gray-500 lowercase max-w-full lg:max-w-md lg:max-w-2xl mt-3 mt-md-4 line-clamp-4"> I'm {userAuth.user.profession ? userAuth.user.profession : "my profession : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae saepe obcaecati aliquid est architecto voluptatibus!"} {userAuth.user.objective ? userAuth.user.objective : "Fill your career objective to print here."}</div>
 
                         <div className="bootstrap- d-flex flex-column column-gap-5 row-gap-2 flex-md-row tailwind- mt-12 lg:mt-14">
                             <div onClick={() => navigate("/")} className="w-auto px-4 h-9 lg:h-11 text-base lg:text-2xl flex items-center rounded-sm justify-center font-bold bg-red-800 text-gray-200 border-1 border-red-800" >Resume</div>
@@ -78,12 +111,12 @@ const Portfolio = () => {
                         </div>
                     </div>
 
-                    <div className="col mt-5" style={{ width: "100%", padding: "0 20px", maxWidth: "100%", display: "flex", maxHeight: "40px", gap: "15px", justifyContent: "flex-end" }}>
+                    {/* <div className="col mt-5" style={{ width: "100%", padding: "0 20px", maxWidth: "100%", display: "flex", maxHeight: "40px", gap: "15px", justifyContent: "flex-end" }}>
                         {userAuth.user.social?.length <= 1 && <h6 style={{ width: "100%", height: "40px", lineHeight: "40px", color: "grey", fontSize: "10px", marginRight: "auto", textAlign: "right" }}>ADD SOCIAL MEDIA LINKS HERE</h6>}
                         {userAuth.user.social?.map((v, i) => {
                             return v.id !== 0 && <Social_app _key={i} key={i} parentStyle={{ width: "30px", height: "30px", borderRadius: "50%", boxShadow: "0 0 3px grey", display: "grid", placeItems: "center" }} social_app_style={{ width: "25px", height: "25px", boxShadow: "0 0 0 3px white", background: "rgba(13, 109, 253, 0.667)", borderRadius: "50%", display: "grid", placeItems: "center" }} v={v} />
                         })}
-                    </div>
+                    </div> */}
                     {/* <h6 className="mt-2" style={{width:"90%", fontSize:"10px", padding:"3px", margin:"0", marginLeft:"auto", textAlign:"right", borderTop:"1px solid rgb(13, 110, 253)", color:"rgb(13, 110, 253)"}}>Connect with me</h6> */}
 
                 </div>
@@ -131,22 +164,22 @@ const Portfolio = () => {
 
                         <li className="flex justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Profession</span>
-                            <span>Frontend Developer</span>
+                            <span>{userAuth?.user?.profession}</span>
                         </li>
 
                         <li className="flex justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">D.O.B</span>
-                            <span>18th May, 1994</span>
+                            <span>{userAuth?.user?.dob}</span>
                         </li>
 
                         <li className="flex justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Residence</span>
-                            <span style={{ maxWidth: "60%" }}>South Delhi</span>
+                            <span style={{ maxWidth: "60%" }}>{userAuth?.user?.city}, {userAuth?.user?.state}, {userAuth?.user?.country}</span>
                         </li>
 
                         <li className="flex justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Phone</span>
-                            <span className="text-end" style={{maxWidth:"60%", wordBreak:"break-all"}}>+91 8287889123</span>
+                            <span className="text-end" style={{ maxWidth: "60%", wordBreak: "break-all" }}>{userAuth?.user?.number}</span>
                         </li>
 
                     </ul>
@@ -154,13 +187,15 @@ const Portfolio = () => {
                     <h5 className="mt-5 text-gray-700 font-bold text-start w-11/12 mx-auto border-b-2 py-1.5 pb-1.5 sm:pb-1.5 md:pb-1.5 lg:pb-2.5">Languages</h5>
                     <ul className="flex flex-column p-0 items-center py-4 gap-y-3.5 border-b-2 pb-5 border-dashed">
 
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
-                            <span className="font-normal">English</span>
-                            <span>70%</span>
+                       {userAuth?.user?.language?.map((v,i)=>{ 
+                       return v.language != "" && <li key={i} className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                            <span className="font-normal">{v.language.toUpperCase()}</span>
+                            <span>{v.level}</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
                         </li>
+                        })}
 
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                        {/* <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Hindi</span>
                             <span>90%</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
@@ -170,18 +205,20 @@ const Portfolio = () => {
                             <span className="font-normal">Bengali</span>
                             <span>80%</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
-                        </li>
+                        </li> */}
                     </ul>
 
                     <h5 className="mt-5 text-gray-700 font-bold text-start w-11/12 mx-auto border-b-2 py-1.5 pb-1.5 sm:pb-1.5 md:pb-1.5 lg:pb-2.5">Skills</h5>
                     <ul className="flex flex-column p-0 items-center py-4 gap-y-3.5 border-b-2 pb-5 border-dashed">
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
-                            <span className="font-normal">HTML</span>
-                            <span>90%</span>
+                    {userAuth?.user?.skill?.map((v,i)=>{
+                        return v.skill != "" && <li key={i} className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                            <span className="font-normal">{v.skill.toUpperCase()}</span>
+                            <span>{v.level}</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
                         </li>
+                    })}
 
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                        {/* <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">CSS</span>
                             <span>90%</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
@@ -215,35 +252,33 @@ const Portfolio = () => {
                             <span className="font-normal">Git</span>
                             <span>40%</span>
                             <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
-                        </li>
+                        </li> */}
                     </ul>
 
                     <h5 className="mt-5 text-gray-700 font-bold text-start w-11/12 mx-auto border-b-2 py-1.5 pb-1.5 sm:pb-1.5 md:pb-1.5 lg:pb-2.5">Other Skills</h5>
                     <ul className="flex flex-column p-0 items-center py-4 gap-y-3.5 border-b-2 pb-5 border-dashed">
 
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
-                            <span className="font-normal">Team Player</span>
+                    {userAuth?.user?.other_skill?.map((v,i)=>{
+                        return v.skill != "" && <li key={i} className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                            <span className="font-normal">{v.skill}</span>
                             <span>Excellent</span>
-                            {/* <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span> */}
                         </li>
+                    })}
 
-                        <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
+                        {/* <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Communication</span>
                             <span>Excellent</span>
-                            {/* <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span> */}
                         </li>
 
                         <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Problem Solving</span>
                             <span>Excellent</span>
-                            {/* <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span> */}
                         </li>
 
                         <li className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                             <span className="font-normal">Creativity</span>
                             <span>Excellent</span>
-                            {/* <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span> */}
-                        </li>
+                        </li> */}
 
                     </ul>
                 </div>
@@ -252,20 +287,22 @@ const Portfolio = () => {
 
                     <div className=" w-full flex flex-wrap px-0 items-center py-4 pb-4 justify-center">
 
-                        <div className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
+                      {userAuth?.user?.qualification?.map((v,i)=>{
+                        return v.education != "" &&  <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
                             <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
-                                <h6 className="w-full font-semibold text-red-800 text-start">Senior Secondary School</h6>
+                                <h6 className="w-full font-semibold text-red-800 text-start">{v.education}</h6>
                                 <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Student </span>
-                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> Jan, 2016 - Jan, 2021</span>
+                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                             </div>
 
                             <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
-                                <h6 className="w-full font-semibold text-gray-600 text-start">Govt. Boys Sr. Secondary School</h6>
+                                <h6 className="w-full font-semibold text-gray-600 text-start">{v.organization}</h6>
                                 <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a ut adipisci nemo laudantium voluptatibus.</p>
                             </div>
                         </div>
+                        })}
 
-                        <div className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8">
+                        {/* <div className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8">
                             <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
                                 <h6 className="w-full font-semibold text-red-800 text-start">Bechalor Of Commerce</h6>
                                 <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Student </span>
@@ -276,42 +313,48 @@ const Portfolio = () => {
                                 <h6 className="w-full font-semibold text-gray-600 text-start">School Of Open Learning (DU)</h6>
                                 <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a ut adipisci nemo laudantium voluptatibus.</p>
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
 
                     <h4 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Courses</h4>
                     <div className=" w-full flex flex-wrap items-center py-4 pb-4 justify-center">
 
-                        <div className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
+                      {userAuth?.user?.course?.map((v,i)=>{  
+                     return v.course != "" && <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
                             <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
-                                <h6 className="w-full font-semibold text-red-800 text-start">Basic Web Designing</h6>
+                                <h6 className="w-full font-semibold text-red-800 text-start">{v.course}</h6>
                                 <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Student </span>
-                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> Jan, 2016 - Jan, 2021</span>
+                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                             </div>
 
                             <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
-                                <h6 className="w-full font-semibold text-gray-600 text-start">Anudip Organization</h6>
-                                <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a ut adipisci nemo laudantium voluptatibus.</p>
+                                <h6 className="w-full font-semibold text-gray-600 text-start">{v.organization}</h6>
+                                <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">{v.description}</p>
                             </div>
                         </div>
+                        })}
+
                     </div>
 
                     <h4 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Work Experience</h4>
                     <div className=" w-full flex flex-wrap items-center py-4 pb-4 justify-center">
 
-                        <div className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
+                      {userAuth?.user?.experience?.map((v,i)=>{
+                        return v.company != "" && <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
                             <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
-                                <h6 className="w-full font-semibold text-red-800 text-start">R1 RCM</h6>
+                                <h6 className="w-full font-semibold text-red-800 text-start">{v.company.toUpperCase()}</h6>
                                 <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Employee </span>
-                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> Jan, 2016 - Jan, 2021</span>
+                                <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                             </div>
 
                             <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
-                                <h6 className="w-full font-semibold text-gray-600 text-start">Associate Analyst</h6>
-                                <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a ut adipisci nemo laudantium voluptatibus.</p>
+                                <h6 className="w-full font-semibold text-gray-600 text-start">{v.designation}</h6>
+                                <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">{v.description}</p>
                             </div>
                         </div>
+                        })}
+
                     </div>
 
                     <h4 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Projects</h4>
@@ -319,22 +362,26 @@ const Portfolio = () => {
 
                         <div className="col-span-1 h-12 sm:h-12 md:h-12 lg:h-full xl:h-full bg-white ">
                             <ul className="d-flex pt-2.5 sm:pt-3 md:pt-3 lg:pt-1 px-2 px-sm-2 px-md-2 px-lg-1 flex-row flex-sm-row flex-md-row flex-lg-column justify-content-start align-items-center max-w-full overflow-x-auto gap-x-1">
-                                <li className="text-gray-700 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">UI Design</li>
-                                <li className="text-gray-500 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">Frontend</li>
+                                {categoryState?.uniqueCategories.map((v,i)=>{
+                                    return v !== "" && <li key={i} onClick={()=>dispatch({type : "SELECT_PROJECT_CATEGORY", projectCategory : v})} className={`text-gray-700 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1 ${v == categoryState.selectedProjectCategory ? "bg-gray-100" : "bg-white" }`}>{v}</li>
+                                })}
+                                {/* <li className="text-gray-500 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">Frontend</li>
                                 <li className="text-gray-500 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">Backend</li>
-                                <li className="text-gray-500 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">Other</li>
+                                <li className="text-gray-500 text-sm sm:text-sm md:text-base lg:text-base xl:text-base font-semibold w-full px-3.5 py-1.5 border-b-0 sm:border-b-0 md:border-b-0 lg:border-b whitespace-nowrap hover:bg-gray-100 hover:text-gray-700 cursor-pointer rounded-1">Other</li> */}
                             </ul>
                         </div>
 
                         <div className="col-span-1 p-3 h-auto sm:col-span-1 md:col-span-1 lg:col-span-3 xl:col-span-3 bg-white grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-y-2 gap-x-3">
 
-                            <div className="w-full aspect-square bg-gray-100 relative overflow-hidden flex flex-col justify-center items-center gap-y-3">
-                                <img src={designImg} className=" absolute h-full w-full object-cover opacity-40 hover:opacity-100 cursor-pointer transition-all duration-500" alt="" />
-                                <h6 className=" z-10 text-green-600 text-sm font-bold">PRODUCT DETAILS</h6>
+                          {categoryState?.selectedProject_categories.map((v,i)=>{
+                            return  <div key={i} className="w-full aspect-square bg-gray-100 relative overflow-hidden flex flex-col justify-center items-center gap-y-3">
+                                <img src={v.url} className=" absolute h-full w-full object-cover opacity-40 hover:opacity-100 cursor-pointer transition-all duration-500" alt="" />
+                                <h6 className=" z-10 text-green-600 text-sm font-bold">{v.project_name}</h6>
                                 <button className=" z-10 text-green-600 text-sm font-bold border-2 border-green-600 py-0.5 px-3.5" >DEMO</button>
                             </div>
+                            })}
 
-                            <div className="w-full aspect-square bg-gray-100 relative overflow-hidden flex flex-col justify-center items-center gap-y-3">
+                            {/* <div className="w-full aspect-square bg-gray-100 relative overflow-hidden flex flex-col justify-center items-center gap-y-3">
                                 <img src={designImg2} className="absolute h-full w-full object-cover opacity-40 hover:opacity-100 cursor-pointer transition-all duration-500" alt="" />
                                 <h6 className=" z-10 text-green-600 text-sm font-bold">PRODUCT DETAILS</h6>
                                 <button className=" z-10 text-green-600 text-sm font-bold border-2 border-green-600 py-0.5 px-3.5" >DEMO</button>
@@ -344,7 +391,7 @@ const Portfolio = () => {
                                 <img src={designImg3} className="absolute h-full w-full object-cover opacity-40 hover:opacity-100 cursor-pointer transition-all duration-500" alt="" />
                                 <h6 className=" z-10 text-green-600 text-sm font-bold">PRODUCT DETAILS</h6>
                                 <button className=" z-10 text-green-600 text-sm font-bold border-2 border-green-600 py-0.5 px-3.5" >DEMO</button>
-                            </div>
+                            </div> */}
 
                         </div>
 
@@ -353,7 +400,7 @@ const Portfolio = () => {
 
                     {/* <h4 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Projects</h4> */}
                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-9 xl:grid-cols-9 items-center py-4 pb-4 justify-center gap-y-1 gap-x-2">
-                        
+
                         <div className="col-span-1 p-3 h-auto sm:col-span-1 md:col-span-1 lg:col-span-5 xl:col-span-5 bg-white grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-y-2 gap-x-3 d-flex flex-column">
                             <h5 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Leave Your Info</h5>
 
@@ -382,26 +429,26 @@ const Portfolio = () => {
 
                         <div className="col-span-1 p-3 h-auto min-h-full sm:col-span-1 md:col-span-1 lg:col-span-4 xl:col-span-4 bg-white grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-y-2 gap-x-3 d-flex flex-column">
                             <h5 className="mt-5 text-gray-700 font-bold text-center w-full mx-auto border-b-2 py-1.5 pb-2.5 sm:pb-2.5 md:pb-2.5 lg:pb-3.5">Contacts</h5>
-                            
+
                             <ul className="w-full bg-gray-100 h-auto d-flex px-3 py-3 flex-column align-items-center gap-y-1.5 mt-4">
                                 <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">Country</span>
-                                    <span className="text-gray-500 text-sm font-bold">India</span>
+                                    <span className="text-gray-500 text-sm font-bold">{userAuth?.user?.country}</span>
                                 </li>
 
                                 <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">State</span>
-                                    <span className="text-gray-500 text-sm font-bold">Delhi</span>
+                                    <span className="text-gray-500 text-sm font-bold">{userAuth?.user?.state}</span>
                                 </li>
 
                                 <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">Pincode</span>
-                                    <span className="text-gray-500 text-sm font-bold">110019</span>
+                                    <span className="text-gray-500 text-sm font-bold">{userAuth?.user?.pincode}</span>
                                 </li>
 
                                 <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">Address</span>
-                                    <span className="text-gray-500 text-sm font-bold" style={{maxWidth:"60%", wordBreak:"break-all"}}>RZ, Kalkaji, South Delhi</span>
+                                    <span className="text-gray-500 text-sm font-bold" style={{ maxWidth: "60%", wordBreak: "break-all" }}>{userAuth?.user?.address}</span>
                                 </li>
                             </ul>
 
@@ -423,7 +470,7 @@ const Portfolio = () => {
 
                                 <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">Facebook</span>
-                                    <span className="text-gray-500 text-sm font-bold" style={{maxWidth:"60%", wordBreak:"break-all"}}>RZ, Kalkaji, South Delhi</span>
+                                    <span className="text-gray-500 text-sm font-bold" style={{ maxWidth: "60%", wordBreak: "break-all" }}>RZ, Kalkaji, South Delhi</span>
                                 </li>
 
                             </ul>
@@ -464,7 +511,7 @@ const Portfolio = () => {
                         </div>
                     </div>
                 })} */}
-{/* 
+                {/* 
                 <Swiper
                     cssMode={true}
                     navigation={true}
