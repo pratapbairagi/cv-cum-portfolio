@@ -1,5 +1,7 @@
 import { useContext, useEffect, useMemo } from "react";
 import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -66,13 +68,45 @@ const Tabs = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
             </svg>
         },
+        {
+            name: "Logout",
+            icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="rgb(184, 177, 177)" style={{ width: "18px" }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+          </svg>,
+          fun : ()=> logout()
+
+        }
+        
     ]
+
+  let navigate = useNavigate()
+
+    // logout fun
+  const logout = async () => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER_URL}/portfolio/logoutme`
+      let {data} = await axios.get(url, {
+        headers : { "Content-Type" : "application/json"},
+        "access-control-allow-origin": `${process.env.REACT_APP_SERVER_URL}`,
+        withCredentials : true
+      });
+    
+      if(data.success){
+        navigate("/login")
+        window.location.reload()
+      }
+    
+    } catch (error) {
+      
+    }
+    
+      }
     return (
         <div id="tabs_parent" style={{ height: "70vh", width: "100%" }}>
             <ul className="px-0 pt-4" style={{ width: "100%" }}>
                 {
                     tabBtnsData.map((v, i) => {
-                        return <li className="" style={{display:`${ (v.name === "Dashboard" || v.name === "Profiles") && userAuth.user.role === "user" ? "none" : "flex"}`}} key={i}>
+                        return <li onClick={v.fun} className="" style={{display:`${ (v.name === "Dashboard" || v.name === "Profiles") && userAuth.user.role === "user" ? "none" : "flex"}`}} key={i}>
                             {v.icon}
                             <span className="d-none d-md-block">{v.name}</span>
                         </li>

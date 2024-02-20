@@ -80,8 +80,8 @@ const ProfileTab = () => {
                     <div className="py-2 col col-12 mt-4 mb-5" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start", position:"relative", columnGap:"40px", width:"92%" }}>
                        <h6 className="mb-4" style={{width:"100%", color:"#5A5AB7", fontWeight:"700"}}>CONTACTS</h6>
                         {userAuth.user.social?.map((v, i) => {
-                            return v.id !== 0 &&  <div key={i} style={{ width: "45px", height: "45px", borderRadius: "50%", background: "#5A5AB7", position:"relative"}}>
-                            <Social_app _key={i} parentStyle={{ width: "100%", height: "100%", borderRadius: "50%", display:"grid", placeItems:"center" }} social_app_style={social_app_style} v={v}/>
+                            return v.id !== 0 &&  <div key={i} style={{ width: "45px", height: "45px", borderRadius: "50%", background: "#5A5AB7", position:"relative", display:"grid", placeItems:"center"}}>
+                            <Social_app _key={i} parentStyle_css=" aspect-video size-8 flex justify-center" social_app_style_css="w-8 h-8 fill-gray-100 hover:fill-white transition-all duration-500" v={v}/>
                                 <Upload onClick={() => location(`/profile/edit/${userAuth.user._id}`, { state: { heading: "social", defaultData: v, process: `edit` } })} style={{ position: "absolute", width: "20px", padding:"3px", stroke:"grey", height: "20px", borderRadius: "50%", boxShadow: "0 0 4px grey", cursor: "pointer", bottom: "-3px", right: "-3px", background: "white" }} />
                         </div>
                         })}

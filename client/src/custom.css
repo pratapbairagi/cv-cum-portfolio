@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+    .left-12 {
+        left : 12.5%;
+    }
+    
+    .text-xs{
+        font-size: 10px;
+    }
+    .bottom-minus{
+        bottom: -100%;
+    }
+
+    @screen sm {
+        .bottom-initail {
+            bottom: initial;
+        }
+
+        .top-initail {
+            top: initial;
+        }
+        bottom-minus{
+            bottom: -100%;
+        }
+    }
+
+    @screen md {
+        .bottom-initail {
+            bottom: initial;
+        }
+
+        .top-initail {
+            top: initial;
+        }
+    }
+
+    @screen lg {
+        .bottom-initail {
+            bottom: initial;
+        }
+
+        .top-initail {
+            top: initial;
+        }
+    }
+
+    @screen xl {
+        .bottom-initail {
+            bottom: initial;
+        }
+
+        .top-initail {
+            top: initial;
+        }
+    }
+
+    
+       
+}
+

@@ -15,6 +15,7 @@ import Search_portfolio from './pages/search_portfolio/searchPortfolio';
 import useLoggednHook from './hooks/customeHook';
 import "tailwindcss/tailwind.css";
 import "./style.css"
+import "./custom.css"
 // bacnic IT company
 // delhi nirman vihar
 // pi, hr
@@ -133,6 +134,7 @@ function App() {
       {/* <div className="App"> */}
       <UserContext.Provider value={{ userAuth: userAuth, setUserAuth: setUserAuth, popupInfo, setPopupInfo }}>
         <BrowserRouter>
+        <NavBar />
 
 
           <Routes>
@@ -154,7 +156,6 @@ function App() {
             </Route>
 
           </Routes>
-          <NavBar />
 
         </BrowserRouter>
       </UserContext.Provider>
