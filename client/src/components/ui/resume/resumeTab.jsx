@@ -290,6 +290,33 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                 </div>}
             </div>
 
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>{console.log("other skill =>", userAuth.user.other_skill)}
+                <div className="col col-12 p-0 d-flex mb-3" style={{ borderBottom: "2px solid red" }}>
+                    <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
+                        Other Skill
+                    </h6>
+                </div>
+                {userAuth.user.other_skill?.map((v, i) => {
+                    return v.skill !== "" && <div key={i} className="col col-12 d-flex flex-wrap p-0">
+                        <div className="col col-8 px-4 m-0 py-2" style={{ height: "50px", display: "flex", alignItems: "center" }}>
+                            <div style={{ height: "22px", width: "90%", background: `linear-gradient(to right, green ${v.skill && v.level + "%"}, white 0)`, color: "black", fontWeight: "700", lineHeight: "22px", textAlign: "left", padding: "0 20px", fontSize: "10px", borderRadius: "20px", boxShadow: "0 0 2px grey" }}>{v.skill ? v.skill : "HTML"}</div>
+                        </div>
+                        <div className="col col-4 py-2" style={{ color: "orangered", fontSize: "10px", fontWeight: "600", justifyContent: "center", height: "50px", display: "flex", alignItems: "center" }}>
+                            {v.skill ? v.level <= 33 ? "Beginner" : v.level >= 66 ? "Expert" : "Intermediate" : "Intermediate"}
+                        </div>
+                        {resumeDownloadClass === true && <div className="col mt-1" style={{ width: "100%", marginRight: "auto", textAlign: "center", fontSize: "16px", display: "flex", justifyContent: "flex-end", columnGap: "12px", alignItems: "center", padding: "5px", color: "red" }}>
+                            <DeleteBtnLogo deleteContentHandler={() => deleteContentHandler({ details: v, content: "other_skill" })} style={{ width: "20px", stroke: "red", cursor: "pointer" }} />
+                            <EditBtnLogo style={{ width: "20px", stroke: "red", cursor: "pointer" }} to={`/resume/edit/${userAuth.user._id}`} defaultData={v} heading="other_skill" />
+                        </div>}
+                    </div>
+                })}
+
+
+                {resumeDownloadClass === true && <div className="col col-12 d-flex resumeDownloadClass" style={{ minHeight: "100px", justifyContent: "center", alignItems: "center" }}>
+                    <AddBtnLogo clss="addBtnLogo" to={`/resume/add/${userAuth.user._id}`} heading="other_skill" />
+                </div>}
+            </div>
+
             <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mt-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>

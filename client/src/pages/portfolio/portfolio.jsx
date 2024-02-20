@@ -186,12 +186,12 @@ const Portfolio = () => {
                     </ul>
 
                     <h5 className="mt-5 text-gray-700 font-bold text-start w-11/12 mx-auto border-b-2 py-1.5 pb-1.5 sm:pb-1.5 md:pb-1.5 lg:pb-2.5">Languages</h5>
-                    <ul className="flex flex-column p-0 items-center py-4 gap-y-3.5 border-b-2 pb-5 border-dashed">
+                    <ul className="flex flex-column p-0 items-center py-4 gap-y-4 border-b-2 pb-5 border-dashed mt-2.5">
 
                         {userAuth?.user?.language?.map((v, i) => {
                             return v.language != "" && <li key={i} className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                                 <span className="font-normal text-sm sm:text-sm md:text-sm lg:text-base xl:text-base">{v.language.toUpperCase()}</span>
-                                <span className="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base">{v.level}</span>
+                                <span className="text-sm sm:text-sm md:text-sm lg:text-base xl:text-base">{v.level}%</span>
                                 <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
                             </li>
                         })}
@@ -210,11 +210,11 @@ const Portfolio = () => {
                     </ul>
 
                     <h5 className="mt-5 text-gray-700 font-bold text-start w-11/12 mx-auto border-b-2 py-1.5 pb-1.5 sm:pb-1.5 md:pb-1.5 lg:pb-2.5">Skills</h5>
-                    <ul className="flex flex-column p-0 items-center py-4 gap-y-3.5 border-b-2 pb-5 border-dashed">
+                    <ul className="flex flex-column p-0 items-center py-4 mt-2.5  gap-y-4 border-b-2 pb-5 border-dashed">
                         {userAuth?.user?.skill?.map((v, i) => {
                             return v.skill != "" && <li key={i} className="flex flex-wrap gap-y-1 justify-between w-11/12 text-base font-medium text-gray-600">
                                 <span className="font-normal text-start text-sm sm:text-sm md:text-sm lg:text-base xl:text-base" style={{ maxWidth: "75%" }}>{v.skill.toUpperCase()}</span>
-                                <span className="font-semibold text-sm sm:text-sm md:text-sm lg:text-base xl:text-base" >{v.level}</span>
+                                <span className="font-semibold text-sm sm:text-sm md:text-sm lg:text-base xl:text-base" >{v.level}%</span>
                                 <span className="w-full h-0.5 bg-yellow-500 rounded-full"></span>
                             </li>
                         })}
@@ -290,13 +290,13 @@ const Portfolio = () => {
 
                         {userAuth?.user?.qualification?.map((v, i) => {
                             return v.education != "" && <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
-                                <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
+                                <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-y-3 md:gap-y-5 items-center self-start">
                                     <h6 className="w-full font-semibold text-red-800 text-start">{v.education}</h6>
                                     <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Student </span>
                                     <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                                 </div>
 
-                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
+                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-2 sm:gap-y-2 md:gap-y-4">
                                     <h6 className="w-full font-semibold text-gray-600 text-start">{v.organization}</h6>
                                     <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a ut adipisci nemo laudantium voluptatibus.</p>
                                 </div>
@@ -323,13 +323,13 @@ const Portfolio = () => {
 
                         {userAuth?.user?.course?.map((v, i) => {
                             return v.course != "" && <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
-                                <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
+                                <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-y-3 md:gap-y-5 items-center self-start">
                                     <h6 className="w-full font-semibold text-red-800 text-start">{v.course}</h6>
                                     <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Student </span>
                                     <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                                 </div>
 
-                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
+                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-2 sm:gap-y-2 md:gap-y-4">
                                     <h6 className="w-full font-semibold text-gray-600 text-start">{v.organization}</h6>
                                     <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">{v.description}</p>
                                 </div>
@@ -343,13 +343,13 @@ const Portfolio = () => {
 
                         {userAuth?.user?.experience?.map((v, i) => {
                             return v.company != "" && <div key={i} className="bg-white w-full px-3.5 py-4 flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between gap-y-8 border-b-2 border-dashed">
-                                <div className="flex flex-wrap gap-x-3 gap-y-5 items-center self-start">
+                                <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-y-3 md:gap-y-5 items-center self-start">
                                     <h6 className="w-full font-semibold text-red-800 text-start">{v.company.toUpperCase()}</h6>
                                     <span className=" py-0 px-0 font-semibold text-xs text-gray-700 flex items-center">Employee </span>
                                     <span className="bg-red-700 py-0 px-2.5 font-normal text-xs h-5 text-gray-100 flex items-center"> {v.start} - {v.end}</span>
                                 </div>
 
-                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-4">
+                                <div className="flex flex-col gap-x-1 justify-content-between gap-y-2 sm:gap-y-2 md:gap-y-4">
                                     <h6 className="w-full font-semibold text-gray-600 text-start">{v.designation}</h6>
                                     <p className="text-sm sm:text-xs md:text-sm lg:text-sm text-start text-gray-700">{v.description}</p>
                                 </div>
@@ -453,7 +453,7 @@ const Portfolio = () => {
                                 </li>
                             </ul>
 
-                            <ul className="w-full bg-gray-100 gap-x-6 gap-y-6 py-4 h-auto grid grid-cols-4 px-3 py-3 flex-column align-items-center gap-y-1.5 mt-2">
+                            <ul className="w-full bg-gray-100 gap-x-1 gap-y-6 py-4 h-auto grid grid-cols-4 px-4 py-3 flex-column align-items-center gap-y-1.5 mt-2">
                                 {/* <li className="w-full d-flex justify-between py-1 px-2">
                                     <span className="text-gray-500 text-sm font-semibold">Github</span>
                                     <span className="text-gray-500 text-sm font-bold">India</span>
@@ -498,7 +498,7 @@ const Portfolio = () => {
                                 }
 
                                 {userAuth.user.social?.map((v, i) => {
-                                    return v.id !== 0 && <Social_app _key={i} key={i} parentStyle_css=" aspect-video size-16" social_app_style_css="w-16 h-16 fill-gray-400 hover:fill-gray-600 transition-all duration-500" v={v} />
+                                    return v.id !== 0 && <Social_app _key={i} key={i} parentStyle_css=" aspect-video size-12" social_app_style_css="w-12 h-12 fill-gray-400 hover:fill-gray-600 transition-all duration-500" v={v} />
                                 })}
 
                             </ul>
