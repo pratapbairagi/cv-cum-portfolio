@@ -378,7 +378,7 @@ const Portfolio = () => {
                                 return <div key={i} className="w-full aspect-square bg-gray-100 relative overflow-hidden flex flex-col justify-center items-center gap-y-3">
                                     <img src={v.url} className=" absolute h-full w-full object-cover opacity-40 hover:opacity-100 cursor-pointer transition-all duration-500" alt="" />
                                     <h6 className=" z-10 text-green-600 text-sm font-bold">{v.project_name}</h6>
-                                    <button className=" z-10 text-green-600 text-sm font-bold border-2 border-green-600 py-0.5 px-3.5" >DEMO</button>
+                                    <a href={v.project_url} className=" z-10 text-green-600 text-sm font-bold border-2 border-green-600 py-0.5 px-3.5 no-underline" >DEMO</a>
                                 </div>
                             })}
 

@@ -236,13 +236,13 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                             <div className="col col-12" style={{ textAlign: "center", padding: "8px", fontSize: "8px", fontWeight: "500", color: "grey" }}>
                                 {v.project_description ? v.project_description : "Anything about your project details, what technologies you have used, how long it took etc."}
                             </div>
-                            <div className="col col-12 d-flex flex-wrap justify-content-center align-items-center mt-2" style={{ fontSize: "10px", fontWeight: "600", columnGap: "10%" }}>
+                            <div className="col col-12 d-flex flex-wrap justify-content-center align-items-center mt-2" style={{ fontSize: "10px", fontWeight: "600", columnGap: "10%", rowGap:"1rem" }}>
                                 <span style={{ padding: "3px 10px", borderBottom: "1px solid orangered", color: "red", whiteSpace: "nowrap" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</span>
-                                <span style={{ padding: "3px 10px", borderBottom: "1px solid orangered", color: "red", textAlign: "left", whiteSpace: "nowrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
+                                <span style={{ padding: "3px 10px", borderBottom: "1px solid orangered", color: "red", textAlign: "left", whiteSpace: "wrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
                             </div>
                         </div>
 
-                        <div className={`col col-12 col-lg-6 p-2 m-0 ${resumeDownloadClass === false ? "d-none" : "d-flex"}`} style={{ height: "max-content", border: "1px solid red" }}>
+                        <div className={`col col-12 col-lg-6 p-2 m-0 ${resumeDownloadClass === false ? "d-none" : "d-flex"}`} style={{ height: "max-content", border: "1px solid gray" }}>
                             <div className="col col-12 d-flex p-0 m-0" style={{ fontSize: "16px", fontWeight: "600", justifyContent: "space-between", gap: "10px" }}>
                                 {v?.url ?
                                     <img src={v?.url} style={{ width: "100%", aspectRatio: "1/.6", maxHeight: "220px", objectFit: "cover" }} alt="" />
@@ -325,14 +325,14 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                 </div>
                 <div className="py-2" style={{ flexDirection: "row", display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {userAuth.user.language?.map((v, i) => {
-                        return v.language !== "" && <div key={i} className="col col-12 col-md-6 col-lg-4 col-xl-3 d-flex flex-wrap gap-0 mt-1">
+                        return v.language !== "" && <div key={i} className="col col-12 col-md-6 col-lg-6 col-xl-4 d-flex flex-wrap gap-0 mt-1">
                             <div className="col col-7  px-4 py-2 m-0" style={{ height: `${resumeDownloadClass === true ? "120px" : "30px"}`, display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center" }}>
                                 {resumeDownloadClass === true && <div style={{ height: "70px", width: "70px", borderRadius: "50%", background: `conic-gradient(green  ${v.language ? (v.level / 100) * 360 : 280}deg, transparent 0)`, color: "black", fontWeight: "700", lineHeight: "80px", textAlign: "left", padding: "0", fontSize: "14px", border: "2px solid white", boxShadow: "0 0 0 2px grey", display: "grid", placeItems: "center", margin: "0 auto" }}>
                                     <span style={{ width: "40px", height: "40px", borderRadius: "50%", background: "white", display: "block", textAlign: "center", lineHeight: "40px" }}>{v.language ? v.level : "80%"}</span>
                                 </div>}
                                 <span style={{ display: "block", color: 'green', fontSize: "10px", fontWeight: "700", padding: "2px 6px", marginTop: "4px" }}>{v.language}</span>
                             </div>
-                            <div className="col col-5 " style={{ background: "white", color: "orangered", fontSize: "10px", fontWeight: "600", justifyContent: "center", height: `${resumeDownloadClass === true ? "120px" : "30px"}`, display: "flex", alignItems: "center" }}>
+                            <div className="col col-5 " style={{  color: "orangered", fontSize: "16px", fontWeight: "600", justifyContent: "center", height: `${resumeDownloadClass === true ? "120px" : "30px"}`, display: "flex", alignItems: "center" }}>
                                 {v.language ? v.level <= 33 ? "Beginner" : v.level >= 66 ? "Expert" : "Intermediate" : "Intermediate"}
                             </div>
                             {resumeDownloadClass === true && <div className="col" style={{ width: "100%", marginRight: "auto", textAlign: "center", fontSize: "16px", display: "flex", justifyContent: "flex-end", columnGap: "12px", alignItems: "center", padding: "5px", color: "red" }}>
