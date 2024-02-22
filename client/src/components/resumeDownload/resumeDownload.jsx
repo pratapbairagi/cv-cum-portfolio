@@ -151,7 +151,7 @@ const ResumeDownload = () => {
             </div>}
 
 
-        <div className="resumeDownload_area_printing_red_mark" ref={pdfRef} style={{ width: `100%`, height:"836px", boxShadow:"0 0 2px red", overflow:"visible", padding:"44px 20px 14px 16px", margin:"auto" }}>
+        <div className="resumeDownload_area_printing_red_mark" ref={pdfRef} style={{ width: `100%`, boxShadow:"0 0 2px red", overflow:"visible", padding:"44px 20px 14px 16px", margin:"auto" }}>
 
 
             <div className="p-0" id="top_details" style={{ display: "flex", flexWrap: "wrap" }}>

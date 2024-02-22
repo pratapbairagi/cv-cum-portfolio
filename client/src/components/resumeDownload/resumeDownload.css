@@ -1,5 +1,5 @@
 
-/* @media only screen and (min-width : 260px) and (max-width : 768px) {
+@media only screen and (min-width : 260px) and (max-width : 768px) {
     .resumeDownload_area_printing_red_mark{
         height:819px;
     }
@@ -9,4 +9,4 @@
     .resumeDownload_area_printing_red_mark{
         height:836px;
     }
-} */
+}

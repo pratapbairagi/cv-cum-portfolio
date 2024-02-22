@@ -290,7 +290,7 @@ const ResumeTab = ({ userAuth, setPopupInfo, popupInfo, getPdfFun, setUserAuth }
                 </div>}
             </div>
 
-            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>{console.log("other skill =>", userAuth.user.other_skill)}
+            <div className="p-0" style={{ display: "flex", flexWrap: "wrap" }}>
                 <div className="col col-12 p-0 d-flex mb-3" style={{ borderBottom: "2px solid red" }}>
                     <h6 style={{ width: "max-content", padding: "4px 16px 4px 16px", background: "rgb(214, 12, 12)", color: "white", margin: "0", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", fontSize: "10px" }}>
                         Other Skill

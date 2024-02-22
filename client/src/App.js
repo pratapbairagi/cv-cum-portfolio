@@ -139,7 +139,7 @@ function App() {
 
           <Routes>
             <Route path='/portfolio/:id' element={<Portfolio />} />
-            <Route path='/about' element={<Portfolio />} />
+            <Route path='/portfolio' element={<Portfolio />} />
             <Route path='/search' element={<Search_portfolio />} />
             <Route element={<ProtectedRoute userAuth={userAuth} />}>
               <Route path='/resume/add/:id' element={<ResumeForm />} />

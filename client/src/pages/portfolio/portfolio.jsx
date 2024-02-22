@@ -107,8 +107,8 @@ const Portfolio = () => {
                         <div className="bootstrap- text-center text-md-start w-full text-sm md:text-base lg:text-2xl text-left text-gray-500 lowercase max-w-full lg:max-w-md lg:max-w-2xl xl:max-w-2xl mt-3 mt-md-4 line-clamp-4"> I'm {userAuth.user.profession ? userAuth.user.profession : "my profession : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae saepe obcaecati aliquid est architecto voluptatibus!"} {userAuth.user.objective ? userAuth.user.objective : "Fill your career objective to print here."}</div>
 
                         <div className="bootstrap- d-flex flex-column column-gap-5 row-gap-2 flex-md-row tailwind- mt-12 lg:mt-14">
-                            <div onClick={() => navigate("/")} className="w-auto px-4 h-9 lg:h-11 text-base lg:text-2xl flex items-center rounded-sm justify-center font-bold bg-red-800 text-gray-200 border-1 border-red-800" >Resume</div>
-                            <div onClick={() => navigate("/dashboard")} className="text-red-800 border-1 border-red-800 w-auto px-4 h-9 lg:h-11 lg:text-2xl flex items-center justify-center text-base font-semibold">Projects</div>
+                            <div onClick={() => navigate("/")} className="w-auto px-4 h-9 lg:h-11 text-base lg:text-2xl flex items-center rounded-sm justify-center font-bold bg-red-800 text-gray-200 border-1 border-red-800 cursor-pointer transition-all duration-1000 hover:bg-white hover:text-red-800" >RESUME</div>
+                            <div onClick={() => navigate("/dashboard")} className="text-red-800 border-1 border-red-800 w-auto px-4 h-9 lg:h-11 lg:text-2xl flex items-center justify-center text-base font-bold cursor-pointer transition-all duration-1000 hover:bg-red-800 hover:text-gray-100">PROJECTS</div>
                         </div>
                     </div>
 
