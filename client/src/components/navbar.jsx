@@ -37,7 +37,7 @@ try {
   }
 
   return (
-     <div className=" m-0 z-20 h-16 sm:h-16 md:h-20 lg:h-20 xl:h-20 fixed sm:fixed md:relative lg:relative xl:sticky bottom-8 sm:bottom-0 md:bottom-initial lg:bottom-initial top-initail md:top-0 w-3/4  sm:w-3/4 md:w-full d-flex justify-between align-items-center pr-2.5 pl-2.5 sm:pr-2.5 sm:pl-2.5 md:pr-6 lg:pr-8 xl:pr-10 left-12 sm:left-12 md:left-0 rounded-full sm:rounded-full md:rounded-none lg:rounded-none bg-white shadow-sm sm:shadow-sm md:shadow-none" >
+     <div className=" m-0 z-20 h-16 sm:h-16 md:h-20 lg:h-20 xl:h-20 fixed sm:fixed md:sticky lg:sticky xl:sticky bottom-8 sm:bottom-0 md:bottom-initial lg:bottom-initial top-initail md:top-0 w-3/4  sm:w-3/4 md:w-full d-flex justify-between align-items-center pr-2.5 pl-2.5 sm:pr-2.5 sm:pl-2.5 md:pr-6 lg:pr-8 xl:pr-10 left-12 sm:left-12 md:left-0 rounded-full sm:rounded-full md:rounded-none lg:rounded-none bg-white shadow-sm sm:shadow-sm md:shadow-none" >
       <ul className={` ${menuOpen === "open" ? "bottom-4 sm:bottom-4" : "bottom-minus sm:bottom-minus"} transition-all duration-1000 m-0 fixed sm:fixed md:relative lg:relative flex sm:flex p-0 justify-center sm:justify-center md:justify-start align-items-center  gap-x-3 sm-gap-3 md:gap-x-5  h-28 sm:h-28 md:h-full lg:h-full w-3/4 sm:w-3/4 left-12 sm:left-12 md:left-2 md:w-8/12 z-30 shadow-md sm:shadow-md md:shadow-none  md:bottom-initial md:top-0 rounded-2 bg-white`}>
         
         <button onClick={()=> setMenuOpen("close")} className="size-6 block sm:block md:hidden absolute top-2 right-2 text-gray-400 font-bold">
