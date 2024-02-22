@@ -248,7 +248,7 @@ const ResumeDownload = () => {
                         <div className={` p-2 py-1 m-0 d-flex flex-column ${resumeDownloadClass === false ? "col-lg-12" : "col-lg-6"}`} style={{ height: "max-content", width:"100%", minHeight: "max-content", maxHeight: "220px", justifyContent: "flex-start" }}>
                             <div className="col col-12 d-flex flex-wrap justify-content-between align-items-center" style={{ fontSize: "60%", fontWeight: "600", columnGap: "10%", position:"relative" }}>
                                 <span style={{ padding: "3px 10px", color: "rgb(34, 31, 31)", whiteSpace: "nowrap" }}>{v.project_name ? v.project_name : "ex : E-Commerce"}</span>
-                                <span style={{ padding: "3px 10px", color: "rgb(34, 31, 31)", textAlign: "left", whiteSpace: "nowrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
+                                <span style={{ padding: "3px 10px", color: "rgb(34, 31, 31)", textAlign: "left", whiteSpace: "wrap" }}>{v.project_url ? v.project_url : "ex : https://shop-now-green.vercel.app"}</span>
                             </div>
                             <div className="col col-12 m-0" style={{ textAlign: "left", padding:"0 11px", fontSize: "55%", fontWeight: "400", color: "rgb(34, 31, 31)" }}>
                                {v.project_description ? v.project_description : "Anything about your project details, what technologies you have used, how long it took etc."}
